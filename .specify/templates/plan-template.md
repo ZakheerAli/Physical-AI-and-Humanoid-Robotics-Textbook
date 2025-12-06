@@ -31,7 +31,19 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+*   `[ ]` Adheres to "No Spec, No Code" rule (3.1)
+*   `[ ]` Spec file follows structure guidelines (3.2)
+*   `[ ]` Naming conventions are followed (3.3)
+*   `[ ]` AI agent selection is appropriate for the task (4.1)
+*   `[ ]` Content adheres to format and tone guidelines (5.1)
+*   `[ ]` Chapter structure is correct (5.2)
+*   `[ ]` Technical accuracy guidelines are followed (5.3)
+*   `[ ]` Docusaurus configuration standards are met (6.1)
+*   `[ ]` MDX documentation standards are met (6.2)
+*   `[ ]` Git workflow is followed (7.1)
+*   `[ ]` Commit messages follow conventional commits format (7.2)
+*   `[ ]` Automated checks (linting, broken links) pass (8.1)
+*   `[ ]` Ethical and safety principles are addressed (9)
 
 ## Project Structure
 

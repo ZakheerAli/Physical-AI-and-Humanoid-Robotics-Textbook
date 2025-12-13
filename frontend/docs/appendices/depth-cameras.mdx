@@ -1,0 +1,94 @@
+---
+id: depth-cameras
+title: Depth Cameras
+---
+
+# Depth Cameras
+
+Depth cameras are specialized sensors that capture not only color information (like a standard camera) but also the distance of objects from the camera. This additional dimension of information (the "Z" coordinate) is invaluable in robotics for tasks such as 3D mapping, object manipulation, obstacle avoidance, and human-robot interaction. This chapter will explore the principles behind depth cameras, their types, and common applications in robotics.
+
+## How Do Depth Cameras Work?
+
+There are several main technologies used by depth cameras to measure distance:
+
+### 1. Structured Light
+
+*   **Principle:** Projects a known pattern of light (e.g., stripes, dots) onto a scene. A camera then observes how this pattern deforms on the surfaces of objects. By analyzing the distortions, the system calculates the depth of each point.
+*   **Examples:** Early Microsoft Kinect (Kinect v1), Intel RealSense SR300.
+*   **Pros:** Can work well indoors, relatively robust.
+*   **Cons:** Can be affected by ambient light, patterns can interfere with each other if multiple cameras are used, limited range.
+
+### 2. Time-of-Flight (ToF)
+
+*   **Principle:** Emits a pulse of light (laser or LED) and measures the time it takes for the light to travel to an object and reflect back to the sensor. Since the speed of light is constant, the distance can be calculated.
+*   **Examples:** Microsoft Azure Kinect, some newer Intel RealSense cameras, iPhone/iPad Pro LiDARS.
+*   **Pros:** Can work in various lighting conditions, longer range than structured light, less affected by multiple cameras.
+*   **Cons:** Lower resolution compared to structured light or stereo, can be affected by reflective surfaces.
+
+### 3. Stereo Vision
+
+*   **Principle:** Uses two (or more) standard cameras placed a known distance apart (a "baseline"), mimicking human binocular vision. By comparing the slight differences (disparities) in the images captured by each camera, the system can triangulate the 3D position of points in the scene.
+*   **Examples:** ZED stereo cameras, Intel RealSense D400 series.
+*   **Pros:** Can work outdoors, higher resolution, can also capture color images.
+*   **Cons:** Computationally intensive, can struggle with textureless surfaces, requires careful calibration.
+
+## Key Information Provided by Depth Cameras
+
+*   **Depth Map:** A grayscale image where the intensity of each pixel represents the distance to the corresponding point in the scene.
+*   **Point Cloud:** A set of 3D data points in space, often represented as $(X, Y, Z)$ coordinates, where each point corresponds to a measured depth. Point clouds can also include color information.
+*   **RGB-D Image:** A combination of a standard RGB color image and a corresponding depth map, perfectly aligned.
+
+## Depth Cameras in Robotics Applications
+
+*   **3D Mapping and SLAM:**
+    *   **Occupancy Grid Mapping:** Creating 2D or 3D maps of the environment by marking occupied and free space based on depth data.
+    *   **Visual SLAM:** Combining visual features from the RGB image with depth information for robust 3D localization and mapping.
+    *   **OctoMap:** A common representation for 3D occupancy maps in ROS, often built from depth camera point clouds.
+*   **Object Detection and Pose Estimation:**
+    *   **Segmentation:** Easily segmenting objects from the background using depth information.
+    *   **3D Object Recognition:** Identifying objects based on their 3D shape, which is more robust than 2D recognition.
+    *   **Grasping:** Providing precise 3D location and orientation for robotic manipulators to grasp objects.
+*   **Obstacle Avoidance and Navigation:**
+    *   Detecting obstacles (even transparent ones for ToF/structured light) and their precise distance for safe path planning.
+    *   Used in conjunction with algorithms like `move_base` or Nav2 to build local costmaps.
+*   **Human-Robot Interaction:**
+    *   **Gesture Recognition:** Understanding human hand gestures in 3D.
+    *   **Body Tracking:** Tracking human pose for collaborative robotics or safety.
+    *   **Safe Interaction:** Ensuring robots maintain a safe distance from humans.
+*   **Augmented Reality (AR) and Virtual Reality (VR):** Creating virtual overlays on real-world scenes or reconstructing real environments in VR.
+
+## Integrating Depth Cameras with ROS2
+
+Depth cameras are typically integrated into ROS2 using dedicated drivers or generic USB camera drivers. The driver will publish:
+
+*   **`sensor_msgs/Image`:** For the RGB stream.
+*   **`sensor_msgs/Image` (Type 16UC1 or 32FC1):** For the depth map.
+*   **`sensor_msgs/PointCloud2`:** For the 3D point cloud.
+*   **`tf2_msgs/TFMessage`:** For the camera's pose and its relation to other robot frames.
+
+`image_proc` and `depth_image_proc` are ROS2 packages that can be used to process raw image and depth data into more usable formats.
+
+```python
+# Example: Launching an Intel RealSense D435i camera in ROS2
+import os
+from ament_index_python.packages import get_package_share_directory
+from launch import LaunchDescription
+from launch_ros.actions import Node
+
+def generate_launch_description():
+    realsense_pkg = get_package_share_directory('realsense2_camera')
+    
+    return LaunchDescription([
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(realsense_pkg, 'launch', 'rs_launch.py')
+            ),
+            launch_arguments={'enable_pointcloud': 'true'}.items()
+        ),
+        # You might also launch rviz2 here to visualize the output
+    ])
+```
+
+Depth cameras provide robots with a critical understanding of their 3D surroundings, transforming flat 2D perception into rich volumetric data. This capability is rapidly expanding the range of tasks robots can perform autonomously and safely.
+
+![Depth Cameras](/img/depth-cameras.svg)

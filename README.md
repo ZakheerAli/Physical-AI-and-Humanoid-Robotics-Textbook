@@ -1,0 +1,68 @@
+# Physical AI and Humanoid Robotics: An Open-Source Textbook
+
+Welcome to the official repository for **Physical AI and Humanoid Robotics**, a comprehensive, open-source textbook designed for students, researchers, and practitioners. This project provides a deep dive into the convergence of intelligent software and physical robotic systems, with a special focus on humanoid robotics.
+
+![Homepage Screenshot](httpsp://i.imgur.com/YOUR_IMAGE_ID.png) <!-- Replace with a real screenshot once deployed -->
+
+## 🤖 About the Textbook
+
+This textbook offers a project-based learning journey that bridges theory and practice. It covers the core concepts of embodied intelligence, from perception and control to machine learning and system integration. Our goal is to provide a high-quality, accessible, and practical resource for anyone passionate about building the next generation of intelligent robots.
+
+The live version of the textbook is deployed and accessible at:
+[https://zakheerali.github.io/Physical-AI-and-Humanoid-Robotics-Textbook/](https://zakheerali.github.io/Physical-AI-and-Humanoid-Robotics-Textbook/)
+
+## ✨ Key Features
+
+- **Comprehensive Content:** Covers everything from foundational principles to advanced topics like sim-to-real transfer and end-to-end project development.
+- **Structured Learning:** Organized into clear, progressive chapters and modules to guide your learning journey.
+- **Hands-On Approach:** Emphasizes practical application with code examples, simulation guides, and project guidelines.
+- **Modern Tech Stack:** Built with Docusaurus, providing a clean, modern, and accessible reading experience with dark mode support.
+- **Open Source:** The entire textbook is open-source, encouraging community contributions, corrections, and improvements.
+
+## 📚 Content Structure
+
+The book is organized into seven core chapters, plus appendices for reference:
+
+- **Chapter 1: Foundations of Physical AI:** Core concepts, embodied intelligence, and humanoid robotics overview.
+- **Chapter 2: Robot Perception Systems:** Sensors, computer vision, and sensor fusion for robotics.
+- **Chapter 3: Motion, Control, and Actuation:** Kinematics, dynamics, control systems, and locomotion.
+- **Chapter 4: Learning and Intelligence in Robots:** Machine learning, reinforcement learning, and imitation learning.
+- **Chapter 5: Simulation to Real-World Transfer:** Robotics simulators, sim-to-real challenges, and deployment.
+- **Chapter 6: System Integration and Architecture:** Robotics middleware (ROS2), AI/control integration, and safety.
+- **Chapter 7: Case Studies and Projects:** Real-world case studies, end-to-end projects, and capstone guidelines.
+- **Appendices:** Practical guides on Python, Linux, Git, microcontrollers, and more.
+
+## 🚀 Getting Started Locally
+
+To run this project on your local machine, follow these steps:
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/ZakheerAli/Physical-AI-and-Humanoid-Robotics-Textbook.git
+    cd Physical-AI-and-Humanoid-Robotics-Textbook
+    ```
+
+2.  **Navigate to the `frontend` directory:**
+    ```bash
+    cd frontend
+    ```
+
+3.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+4.  **Start the development server:**
+    ```bash
+    npm start
+    ```
+
+The website will be available at `http://localhost:3000`.
+
+## 🤝 How to Contribute
+
+We welcome contributions from the community! Whether you want to fix a typo, improve an explanation, add a new example, or suggest a new topic, your input is valuable. Please feel free to open an issue or submit a pull request.
+
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

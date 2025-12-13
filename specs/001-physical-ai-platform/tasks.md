@@ -10,9 +10,9 @@ description: "Task list for the Physical AI & Humanoid Robotics platform"
 
 **Purpose**: Project initialization and basic structure.
 
-- [ ] T001 Initialize a new Docusaurus project in the `frontend/` directory
-- [ ] T002 Initialize a new Python project for the backend in the `backend/` directory (e.g., using Poetry or Pipenv)
-- [ ] T003 [P] Configure linting and formatting tools (Prettier) for both frontend and backend
+- [x] T001 Initialize a new Docusaurus project in the `frontend/` directory
+- [x] T002 Initialize a new Python project for the backend in the `backend/` directory (e.g., using Poetry or Pipenv)
+- [x] T003 [P] Configure linting and formatting tools (Prettier) for both frontend and backend
 
 ---
 
@@ -20,12 +20,12 @@ description: "Task list for the Physical AI & Humanoid Robotics platform"
 
 **Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented.
 
-- [ ] T004 Setup the basic Docusaurus site structure in `frontend/` (e.g., sidebars, navbar, footer)
-- [ ] T005 [P] Implement the basic backend service structure in `backend/` (e.g., using FastAPI)
-- [ ] T006 [P] Setup API routing and middleware structure in `backend/src/`
-- [ ] T007 Create the `User` model in `backend/src/models/user.py` based on `data-model.md`
-- [ ] T008 Configure error handling and logging infrastructure for both frontend and backend
-- [ ] T009 Setup environment configuration management for both frontend and backend
+- [x] T004 Setup the basic Docusaurus site structure in `frontend/` (e.g., sidebars, navbar, footer)
+- [x] T005 [P] Implement the basic backend service structure in `backend/` (e.g., using FastAPI)
+- [x] T006 [P] Setup API routing and middleware structure in `backend/src/`
+- [x] T007 Create the `User` model in `backend/src/models/user.py` based on `data-model.md`
+- [x] T008 Configure error handling and logging infrastructure for both frontend and backend
+- [x] T009 Setup environment configuration management for both frontend and backend
 
 ---
 
@@ -35,11 +35,11 @@ description: "Task list for the Physical AI & Humanoid Robotics platform"
 
 **Independent Test**: The "The Robotic Nervous System" module is accessible on the Docusaurus site, and the code examples can be run successfully.
 
-- [ ] T010 [US1] Create the `CurriculumModule` for "The Robotic Nervous System" in the Docusaurus site in `frontend/docs/module1.mdx`
-- [ ] T011 [P] [US1] Write the content for the ROS 2 Architecture section in `frontend/docs/module1.mdx`
-- [ ] T012 [P] [US1] Write the content for the Middleware section in `frontend/docs/module1.mdx`
-- [ ] T013 [P] [US1] Create the URDF file for humanoid kinematics in `frontend/static/code/module1/robot.urdf`
-- [ ] T014 [US1] Add the "The Robotic Nervous System" module to the Docusaurus sidebar in `frontend/sidebars.js`
+- [x] T010 [US1] Create the `CurriculumModule` for "The Robotic Nervous System" in the Docusaurus site in `frontend/docs/module1.mdx`
+- [x] T011 [P] [US1] Write the content for the ROS 2 Architecture section in `frontend/docs/module1.mdx`
+- [x] T012 [P] [US1] Write the content for the Middleware section in `frontend/docs/module1.mdx`
+- [x] T013 [P] [US1] Create the URDF file for humanoid kinematics in `frontend/static/code/module1/robot.urdf`
+- [x] T014 [US1] Add the "The Robotic Nervous System" module to the Docusaurus sidebar in `frontend/sidebars.js`
 
 ---
 
@@ -49,11 +49,11 @@ description: "Task list for the Physical AI & Humanoid Robotics platform"
 
 **Independent Test**: The "The Digital Twin" module is accessible on the Docusaurus site, and the simulation examples can be run successfully.
 
-- [ ] T015 [US2] Create the `CurriculumModule` for "The Digital Twin" in the Docusaurus site in `frontend/docs/module2.mdx`
-- [ ] T016 [P] [US2] Write the content for the Physics section in `frontend/docs/module2.mdx`
-- [ ] T017 [P] [US2] Write the content for the Rendering section in `frontend/docs/module2.mdx`
-- [ ] T018 [P] [US2] Write the content for the Sensors section in `frontend/docs/module2.mdx`
-- [ ] T019 [US2] Add the "The Digital Twin" module to the Docusaurus sidebar in `frontend/sidebars.js`
+- [x] T015 [US2] Create the `CurriculumModule` for "The Digital Twin" in the Docusaurus site in `frontend/docs/module2.mdx`
+- [x] T016 [P] [US2] Write the content for the Physics section in `frontend/docs/module2.mdx`
+- [x] T017 [P] [US2] Write the content for the Rendering section in `frontend/docs/module2.mdx`
+- [x] T018 [P] [US2] Write the content for the Sensors section in `frontend/docs/module2.mdx`
+- [x] T019 [US2] Add the "The Digital Twin" module to the Docusaurus sidebar in `frontend/sidebars.js`
 
 ---
 
@@ -63,11 +63,11 @@ description: "Task list for the Physical AI & Humanoid Robotics platform"
 
 **Independent Test**: The "The AI-Robot Brain" module is accessible on the Docusaurus site, and the AI/ML examples can be run successfully.
 
-- [ ] T020 [US3] Create the `CurriculumModule` for "The AI-Robot Brain" in the Docusaurus site in `frontend/docs/module3.mdx`
-- [ ] T021 [P] [US3] Write the content for the Platform section in `frontend/docs/module3.mdx`
-- [ ] T022 [P] [US3] Write the content for the Navigation section in `frontend/docs/module3.mdx`
-- [ ] T023 [P] [US3] Write the content for the Perception section in `frontend/docs/module3.mdx`
-- [ ] T024 [US3] Add the "The AI-Robot Brain" module to the Docusaurus sidebar in `frontend/sidebars.js`
+- [x] T020 [US3] Create the `CurriculumModule` for "The AI-Robot Brain" in the Docusaurus site in `frontend/docs/module3.mdx`
+- [x] T021 [P] [US3] Write the content for the Platform section in `frontend/docs/module3.mdx`
+- [x] T022 [P] [US3] Write the content for the Navigation section in `frontend/docs/module3.mdx`
+- [x] T023 [P] [US3] Write the content for the Perception section in `frontend/docs/module3.mdx`
+- [x] T024 [US3] Add the "The AI-Robot Brain" module to the Docusaurus sidebar in `frontend/sidebars.js`
 
 ---
 
@@ -77,11 +77,11 @@ description: "Task list for the Physical AI & Humanoid Robotics platform"
 
 **Independent Test**: The "Vision-Language-Action (VLA)" module is accessible on the Docusaurus site, and the VLA demo can be run successfully.
 
-- [ ] T025 [US4] Create the `CurriculumModule` for "Vision-Language-Action (VLA)" in the Docusaurus site in `frontend/docs/module4.mdx`
-- [ ] T026 [P] [US4] Write the content for the Voice section in `frontend/docs/module4.mdx`
-- [ ] T027 [P] [US4] Write the content for the Cognitive Planning section in `frontend/docs/module4.mdx`
-- [ ] T028 [P] [US4] Write the content for the Capstone section in `frontend/docs/module4.mdx`
-- [ ] T029 [US4] Add the "Vision-Language-Action (VLA)" module to the Docusaurus sidebar in `frontend/sidebars.js`
+- [x] T025 [US4] Create the `CurriculumModule` for "Vision-Language-Action (VLA)" in the Docusaurus site in `frontend/docs/module4.mdx`
+- [x] T026 [P] [US4] Write the content for the Voice section in `frontend/docs/module4.mdx`
+- [x] T027 [P] [US4] Write the content for the Cognitive Planning section in `frontend/docs/module4.mdx`
+- [x] T028 [P] [US4] Write the content for the Capstone section in `frontend/docs/module4.mdx`
+- [x] T029 [US4] Add the "Vision-Language-Action (VLA)" module to the Docusaurus sidebar in `frontend/sidebars.js`
 
 ---
 
@@ -91,11 +91,11 @@ description: "Task list for the Physical AI & Humanoid Robotics platform"
 
 **Independent Test**: Users can register and log in to the platform.
 
-- [ ] T030 [US5] Implement the `POST /auth/register` endpoint in the backend in `backend/src/api/auth.py`
-- [ ] T031 [US5] Implement the `POST /auth/login` endpoint in the backend in `backend/src/api/auth.py`
-- [ ] T032 [P] [US5] Create the registration form in the frontend in `frontend/src/pages/register.js`
-- [ ] T033 [P] [US5] Create the login form in the frontend in `frontend/src/pages/login.js`
-- [ ] T034 [US5] Integrate the frontend forms with the backend authentication endpoints
+- [x] T030 [US5] Implement the `POST /auth/register` endpoint in the backend in `backend/src/api/auth.py`
+- [x] T031 [US5] Implement the `POST /auth/login` endpoint in the backend in `backend/src/api/auth.py`
+- [x] T032 [P] [US5] Create the registration form in the frontend in `frontend/src/pages/register.js`
+- [x] T033 [P] [US5] Create the login form in the frontend in `frontend/src/pages/login.js`
+- [x] T034 [US5] Integrate the frontend forms with the backend authentication endpoints
 
 ---
 
@@ -103,8 +103,8 @@ description: "Task list for the Physical AI & Humanoid Robotics platform"
 
 **Purpose**: Improvements that affect multiple user stories.
 
-- [ ] T035 [P] Add documentation for the backend API
-- [ ] T036 Code cleanup and refactoring
+- [x] T035 [P] Add documentation for the backend API
+- [x] T036 Code cleanup and refactoring
 - [ ] T037 Performance optimization across all stories
 - [ ] T038 Security hardening
 - [ ] T039 Run quickstart.md validation

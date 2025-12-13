@@ -1,0 +1,102 @@
+---
+id: git-and-github
+title: Git & GitHub Essentials
+---
+
+# Git & GitHub Essentials
+
+Version control is paramount in any software development, and robotics is no exception. Git is a distributed version control system that tracks changes in source code during software development. GitHub is a web-based platform that uses Git for version control, facilitating collaboration and project management among developers. This chapter will cover the fundamental concepts of Git and essential GitHub workflows crucial for collaborative robotics projects.
+
+## Why Git & GitHub for Robotics?
+
+*   **Collaboration:** Multiple developers can work on the same project simultaneously without conflicts.
+*   **Version History:** Every change is recorded, allowing you to revert to previous versions if needed.
+*   **Code Management:** Organize, track, and manage all code changes efficiently.
+*   **Backup and Recovery:** Your code is stored remotely on GitHub, providing a robust backup solution.
+*   **Open Source Contribution:** Essential for contributing to and utilizing open-source robotics projects (e.g., ROS).
+
+## Fundamental Git Concepts
+
+*   **Repository (Repo):** A project's folder where Git tracks all changes.
+*   **Commit:** A snapshot of your repository at a specific point in time. Each commit has a unique ID and a message describing the changes.
+*   **Branch:** A parallel version of the repository. Developers create branches to work on new features or bug fixes without affecting the main codebase.
+*   **Merge:** Combining changes from one branch into another.
+*   **Clone:** Creating a local copy of a remote repository.
+*   **Pull:** Fetching changes from a remote repository and merging them into your local branch.
+*   **Push:** Uploading your local commits to a remote repository.
+
+## Essential Git Commands
+
+### Basic Setup
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your_email@example.com"
+```
+
+### Initializing a Repository
+
+```bash
+git init          # Initializes a new Git repository in the current directory
+git clone <url>   # Clones an existing repository from a URL
+```
+
+### Staging and Committing Changes
+
+```bash
+git status                     # Shows the status of changes
+git add <file>                 # Adds a file to the staging area
+git add .                      # Adds all changes to the staging area
+git commit -m "Commit message" # Records changes to the repository
+```
+
+### Branching and Merging
+
+```bash
+git branch                      # Lists all local branches
+git branch <new-branch-name>    # Creates a new branch
+git checkout <branch-name>      # Switches to a different branch
+git merge <branch-name>         # Merges specified branch into the current branch
+```
+
+### Remote Operations (with GitHub)
+
+```bash
+git remote add origin <remote-repo-url> # Connects local repo to a remote GitHub repo
+git push -u origin <branch-name>        # Pushes local changes to remote
+git pull origin <branch-name>           # Pulls changes from remote
+```
+
+## GitHub Workflow
+
+A typical GitHub workflow involves:
+
+1.  **Forking (for open-source contributions):** Create your own copy of a repository.
+2.  **Cloning:** Get a local copy of the repository.
+3.  **Creating a Branch:** `git checkout -b feature/my-new-feature`.
+4.  **Making Changes:** Write code, commit frequently.
+5.  **Pushing Changes:** `git push origin feature/my-new-feature`.
+6.  **Creating a Pull Request (PR):** Propose your changes to the original repository.
+7.  **Code Review:** Other developers review your code.
+8.  **Merging:** If approved, your changes are merged into the main branch.
+
+## `.gitignore` File
+
+The `.gitignore` file specifies intentionally untracked files that Git should ignore. This is crucial for keeping your repository clean, especially for temporary build files, environment variables, and large datasets common in robotics.
+
+```
+# Example .gitignore for a Python robotics project
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+build/
+dist/
+.env
+*.log
+```
+
+Understanding and effectively using Git and GitHub are essential skills for any robotics developer, enabling efficient individual work and seamless team collaboration.
+
+![Git & GitHub Essentials](/img/git-and-github.svg)

@@ -1,0 +1,113 @@
+---
+id: linux-and-bash
+title: Linux & Bash for Robotics
+---
+
+# Linux & Bash for Robotics
+
+Linux is the dominant operating system in robotics, providing a stable, open-source, and highly customizable environment. Bash, as the default shell for many Linux distributions, is an indispensable tool for interacting with the system, automating tasks, and managing robotic software. This chapter will cover the fundamentals of Linux and essential Bash commands relevant to robotics.
+
+## Why Linux for Robotics?
+
+*   **Open Source:** Provides flexibility and transparency, crucial for research and development.
+*   **Stability and Reliability:** Ideal for long-running robotic applications.
+*   **Package Management:** Easy installation and management of software dependencies, especially for robotics frameworks like ROS.
+*   **Customization:** Allows developers to tailor the operating system to specific hardware and application needs.
+*   **Community Support:** A vast community provides extensive documentation and troubleshooting resources.
+
+## Basic Linux Concepts
+
+### Filesystem Hierarchy Standard (FHS)
+
+Linux organizes files in a tree-like structure. Key directories include:
+
+*   `/`: The root directory.
+*   `/bin`: Essential user binaries (commands).
+*   `/etc`: System-wide configuration files.
+*   `/home`: User home directories.
+*   `/opt`: Optional application software.
+*   `/usr`: User programs and data.
+*   `/var`: Variable data (logs, temporary files).
+
+### Permissions
+
+Linux uses a robust permission system (read, write, execute) for users, groups, and others to control access to files and directories.
+
+```bash
+# Example: Change permissions
+chmod 755 script.sh  # Owner has rwx, group/others have rx
+```
+
+## Essential Bash Commands for Robotics
+
+### Navigation and File Management
+
+*   `pwd`: Print working directory.
+*   `ls`: List directory contents.
+    *   `ls -l`: Long format.
+    *   `ls -a`: Show hidden files.
+*   `cd [directory]`: Change directory.
+*   `mkdir [directory]`: Make directory.
+*   `rm [file]`: Remove file.
+    *   `rm -r [directory]`: Remove directory and its contents recursively.
+*   `cp [source] [destination]`: Copy files or directories.
+*   `mv [source] [destination]`: Move or rename files or directories.
+
+### Text Processing
+
+*   `cat [file]`: Concatenate and display file content.
+*   `grep [pattern] [file]`: Search for a pattern in a file.
+*   `head [file]`: Display the beginning of a file.
+*   `tail [file]`: Display the end of a file.
+    *   `tail -f [file]`: Follow (monitor) the end of a file.
+*   `nano` or `vim`: Command-line text editors.
+
+### System Information and Processes
+
+*   `top` / `htop`: Display running processes.
+*   `ps aux`: Display all running processes.
+*   `kill [PID]`: Terminate a process by its Process ID.
+*   `df -h`: Display disk space usage.
+*   `free -h`: Display memory usage.
+
+### Networking
+
+*   `ifconfig` / `ip a`: Display network interface information.
+*   `ping [host]`: Send ICMP ECHO_REQUEST packets to network hosts.
+*   `ssh [user]@[host]`: Secure Shell for remote access.
+
+## Bash Scripting Basics
+
+Bash scripts automate repetitive tasks.
+
+```bash
+#!/bin/bash
+# A simple bash script for robotics
+
+echo "Starting robot operations..."
+
+# Check if a ROS master is running
+if pgrep -x "roscore" > /dev/null
+then
+    echo "ROS Master is running."
+else
+    echo "ROS Master not found. Launching roscore..."
+    roscore & # Run in background
+fi
+
+echo "Operations complete."
+```
+
+## Environment Variables
+
+Environment variables are dynamic named values that affect the way running processes behave. Critical for ROS setup.
+
+```bash
+# Example: Setting ROS_MASTER_URI
+export ROS_MASTER_URI=http://localhost:11311
+echo $ROS_MASTER_URI
+```
+
+Mastering Linux and Bash commands is fundamental for any robotics engineer, enabling efficient development, deployment, and troubleshooting of robotic systems.
+
+![Linux & Bash for Robotics](/img/linux-and-bash.svg)

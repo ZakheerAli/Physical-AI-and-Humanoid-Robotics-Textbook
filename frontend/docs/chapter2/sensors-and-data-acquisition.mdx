@@ -1,0 +1,72 @@
+---
+id: sensors-and-data-acquisition
+title: Sensors & Actuators
+---
+
+# Sensors & Actuators
+
+Sensors and actuators are the fundamental components that enable robots to perceive their environment and interact with it. Sensors provide robots with information about the world, while actuators allow robots to perform physical actions. This chapter will explore various types of sensors and actuators commonly used in robotics.
+
+## Sensors
+
+Sensors are devices that detect and respond to physical input from the environment. They convert physical phenomena into electrical signals that can be processed by a robot's controller.
+
+### Proprioceptive Sensors
+
+These sensors measure the internal state of the robot.
+
+*   **Encoders:** Measure the angular or linear position of a joint. Used for precise motor control and odometry.
+*   **IMUs (Inertial Measurement Units):** Combine accelerometers, gyroscopes, and sometimes magnetometers to measure orientation, angular velocity, and linear acceleration. Essential for balancing, navigation, and pose estimation.
+*   **Force/Torque Sensors:** Measure forces and torques applied at specific points, often at the wrist or grippers of robotic arms, for compliant control or object manipulation.
+
+### Exteroceptive Sensors
+
+These sensors gather information about the robot's external environment.
+
+*   **Cameras:** Provide visual information.
+    *   **Monocular Cameras:** Standard 2D images. Used for object recognition, tracking, and visual odometry.
+    *   **Stereo Cameras:** Two cameras separated by a known baseline, allowing for depth perception and 3D reconstruction.
+    *   **RGB-D Cameras (e.g., Intel RealSense, Microsoft Kinect):** Provide both color (RGB) and depth (D) information directly. Highly valuable for 3D mapping, object detection, and human-robot interaction.
+*   **Lidar (Light Detection and Ranging):** Emits laser pulses and measures the time it takes for them to return, creating precise 2D or 3D maps of the environment. Crucial for autonomous navigation, obstacle avoidance, and mapping.
+*   **Radar (Radio Detection and Ranging):** Uses radio waves to detect objects and measure their range, speed, and direction. Often used in outdoor and adverse weather conditions where lidar or cameras might struggle.
+*   **Ultrasonic Sensors:** Emit ultrasonic waves and measure the time-of-flight to detect obstacles and measure distances. Simpler and cheaper than lidar/radar, but less precise.
+*   **Proximity Sensors:** Detect the presence of an object without physical contact (e.g., infrared, inductive, capacitive sensors). Used for basic obstacle detection or limit switches.
+*   **Microphones:** For auditory perception, sound localization, and speech recognition in human-robot interaction.
+
+## Actuators
+
+Actuators are components that convert energy (electrical, hydraulic, pneumatic) into physical motion or force. They are responsible for making the robot move and manipulate objects.
+
+### Electric Motors
+
+The most common type of actuator in robotics.
+
+*   **DC Motors:** Simple, inexpensive, and good for continuous rotation. Often used with gearboxes to increase torque.
+*   **Brushless DC (BLDC) Motors:** More efficient, longer lifespan, and provide better control than brushed DC motors. Widely used in drones and high-performance robots.
+*   **Stepper Motors:** Provide precise angular positioning without feedback, making them suitable for applications requiring exact incremental movements.
+*   **Servo Motors:** A combination of a DC motor, gearbox, position sensor, and control electronics. Provides precise control over angular position. Common in RC (remote control) applications and smaller robots.
+
+### Hydraulic Actuators
+
+Use incompressible fluid under pressure to generate large forces.
+
+**Advantages:** High power-to-weight ratio, high force output.
+**Disadvantages:** Messy, complex, maintenance-intensive.
+**Applications:** Heavy-duty industrial robots, construction machinery.
+
+### Pneumatic Actuators
+
+Use compressed air to generate linear or rotational motion.
+
+**Advantages:** Simple, clean, fast response, inexpensive for basic applications.
+**Disadvantages:** Lower precision and force compared to hydraulics, difficulty in precise control.
+**Applications:** Grippers, pick-and-place robots in manufacturing.
+
+### Other Actuators
+
+*   **Solenoids:** Produce a linear pulling or pushing force when energized.
+*   **Shape Memory Alloys (SMAs):** Materials that "remember" their original shape and return to it upon heating, offering compact and silent actuation for some applications.
+
+The selection of appropriate sensors and actuators is critical for the robot's performance, cost, and overall functionality. Understanding their characteristics and limitations is essential for robotic system design.
+
+![Sensors & Actuators](/img/sensors-and-actuators.svg)

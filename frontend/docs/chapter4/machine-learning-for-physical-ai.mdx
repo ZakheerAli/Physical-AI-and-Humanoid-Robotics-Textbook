@@ -1,0 +1,92 @@
+--- 
+id: machine-learning-for-physical-ai
+title: Neural Networks (Basic)
+---
+
+# Neural Networks (Basic)
+
+Neural networks are at the core of modern artificial intelligence, driving advancements in areas like computer vision, natural language processing, and robotics. Inspired by the structure and function of the human brain, these computational models are capable of learning complex patterns and relationships from data. This chapter will introduce the basic concepts of neural networks, their architecture, and how they learn.
+
+## The Neuron: Building Block of Neural Networks
+
+At its core, a neural network is composed of interconnected units called **neurons** (or perceptrons). A single neuron receives one or more inputs, applies a transformation to them, and produces an output.
+
+Each input ($x_i$) is multiplied by a corresponding **weight** ($w_i$), which represents the strength or importance of that input. These weighted inputs are summed together, and a **bias** ($b$) term is added. This sum is then passed through an **activation function** ($\sigma$), which introduces non-linearity into the model.
+
+The output ($y$) of a single neuron can be expressed as:
+
+$$y = \\sigma\\left(\\sum_{i=1}^{n} (x_i w_i) + b\\right)$$
+
+*   **Inputs ($x_i$):** Data features fed into the neuron.
+*   **Weights ($w_i$):** Parameters that the neuron learns. They determine the influence of each input.
+*   **Bias ($b$):** Another learnable parameter that shifts the activation function, allowing the neuron to activate under different input conditions.
+*   **Activation Function ($\sigma$):** A non-linear function applied to the weighted sum of inputs plus bias. Common activation functions include Sigmoid, ReLU (Rectified Linear Unit), and Tanh.
+    *   **Sigmoid:** $\sigma(z) = \frac{1}{1 + e^{-z}}$. Squashes values between 0 and 1.
+    *   **ReLU:** $\sigma(z) = \max(0, z)$. Simple, computationally efficient, and widely used.
+
+## Architecture of a Neural Network
+
+Neural networks are typically organized into layers of interconnected neurons.
+
+### 1. Input Layer
+
+*   Receives the raw input data (features).
+*   The number of neurons in this layer corresponds to the number of input features.
+*   No computations are performed here; it simply passes the inputs to the next layer.
+
+### 2. Hidden Layers
+
+*   One or more layers between the input and output layers.
+*   Neurons in hidden layers perform computations (weighted sum + activation) and extract complex patterns from the data.
+*   The term "deep" in deep learning refers to neural networks with many hidden layers.
+
+### 3. Output Layer
+
+*   Produces the final output of the network.
+*   The number of neurons in this layer depends on the type of problem:
+    *   **Regression:** Single neuron for predicting continuous values (e.g., robot's joint angle).
+    *   **Binary Classification:** Single neuron with a Sigmoid activation (e.g., obstacle detected/not detected).
+    *   **Multi-class Classification:** Multiple neurons with a Softmax activation (e.g., identifying different objects like "car", "person", "tree").
+
+## How Neural Networks Learn: Training Process
+
+Neural networks learn by adjusting their weights and biases based on the errors they make during predictions. This process is called **training**.
+
+### 1. Forward Propagation
+
+*   Input data is fed into the network.
+*   It propagates through each layer, with each neuron performing its computations, until an output prediction is generated.
+
+### 2. Loss Function (Cost Function)
+
+*   Measures how well the network's prediction matches the actual target value.
+*   Examples:
+    *   **Mean Squared Error (MSE):** For regression tasks, calculates the average of the squared differences between predictions and actual values.
+    *   **Cross-Entropy Loss:** For classification tasks, measures the dissimilarity between predicted probabilities and true labels.
+
+### 3. Backpropagation
+
+*   The core algorithm for training neural networks.
+*   It calculates the gradient of the loss function with respect to each weight and bias in the network. This gradient indicates how much each parameter contributes to the error.
+*   The chain rule of calculus is used to efficiently compute these gradients by propagating the error backward from the output layer to the input layer.
+
+### 4. Optimizer
+
+*   Uses the gradients computed by backpropagation to update the weights and biases in a way that minimizes the loss function.
+*   **Gradient Descent:** A common optimization algorithm that iteratively adjusts parameters in the direction opposite to the gradient.
+    *   **Learning Rate:** A hyperparameter that controls the step size of each update. A too-large learning rate can overshoot the minimum; a too-small rate can lead to slow convergence.
+*   Examples: Stochastic Gradient Descent (SGD), Adam, RMSprop.
+
+This iterative process of forward propagation, calculating loss, backpropagation, and optimizing parameters continues for many **epochs** (full passes through the training dataset) until the network's predictions are sufficiently accurate or the loss stops decreasing.
+
+## Applications in Robotics
+
+Neural networks are revolutionizing robotics:
+*   **Perception:** Object detection, semantic segmentation, depth estimation from cameras.
+*   **Control:** Learning complex motor control policies, reinforcement learning for robot navigation and manipulation.
+*   **Path Planning:** Generating optimal paths in complex environments.
+*   **Human-Robot Interaction:** Gesture recognition, speech understanding, emotion detection.
+
+Understanding these basic principles provides a foundation for exploring more advanced neural network architectures (like Convolutional Neural Networks for vision or Recurrent Neural Networks for sequences) and their powerful applications in physical AI.
+
+![Neural Networks (Basic)](/img/neural-networks.svg)

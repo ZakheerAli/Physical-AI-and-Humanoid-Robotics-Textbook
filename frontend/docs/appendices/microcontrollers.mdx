@@ -1,0 +1,60 @@
+---
+id: microcontrollers
+title: Microcontrollers
+---
+
+# Microcontrollers
+
+Microcontrollers (MCUs) are compact integrated circuits designed to govern a specific operation in an embedded system. They are essentially small, self-contained computers on a single chip, containing a processor core, memory, and programmable input/output (I/O) peripherals. In robotics, microcontrollers are indispensable for handling low-level control tasks, interfacing with sensors and actuators, and executing real-time operations.
+
+## Key Components of a Microcontroller
+
+*   **CPU (Central Processing Unit):** The "brain" of the microcontroller, responsible for executing instructions.
+*   **Memory:**
+    *   **Flash Memory (Program Memory):** Stores the program (firmware) that the microcontroller executes. Non-volatile.
+    *   **RAM (Random Access Memory):** Used for temporary data storage during program execution. Volatile.
+    *   **EEPROM (Electrically Erasable Programmable Read-Only Memory):** Small amount of non-volatile memory for storing configuration settings that need to persist across power cycles.
+*   **Peripherals:** Integrated circuits for specific functions, eliminating the need for external components:
+    *   **GPIO (General Purpose Input/Output):** Digital pins that can be configured as inputs or outputs to interact with external circuits (buttons, LEDs, sensors).
+    *   **ADCs (Analog-to-Digital Converters):** Convert analog signals (e.g., from potentiometers, some sensors) into digital values the MCU can process.
+    *   **DACs (Digital-to-Analog Converters):** Convert digital values into analog signals (less common than ADCs, used for motor control or audio).
+    *   **PWM (Pulse Width Modulation):** Generate square waves with varying duty cycles, commonly used for motor speed control, LED brightness, and generating analog-like signals.
+    *   **Timers/Counters:** For precise timing, measuring intervals, and controlling external events.
+    *   **Communication Interfaces:**
+        *   **UART/USART (Serial):** For communicating with computers or other MCUs.
+        *   **SPI (Serial Peripheral Interface):** High-speed synchronous serial communication, often used for sensors, displays, and memory chips.
+        *   **I2C (Inter-Integrated Circuit):** Two-wire serial communication, commonly used for connecting multiple low-speed peripheral devices to a master MCU.
+        *   **CAN (Controller Area Network):** Robust, message-based protocol used in automotive and industrial automation for communicating between many nodes.
+        *   **USB (Universal Serial Bus):** For high-speed communication and power delivery.
+
+## Popular Microcontroller Platforms for Robotics
+
+*   **Arduino:** An open-source electronics platform based on easy-to-use hardware and software. Popular for beginners and rapid prototyping due to its simplicity and vast community support. Many robotics projects start with an Arduino for simple motor control or sensor reading.
+*   **ESP32/ESP8266:** Low-cost, low-power microcontrollers with integrated Wi-Fi (and Bluetooth for ESP32). Excellent for IoT robotics applications requiring network connectivity, remote control, and data logging.
+*   **STM32:** A family of 32-bit microcontrollers from STMicroelectronics, based on the ARM Cortex-M processor. Known for high performance, rich peripheral sets, and extensive development ecosystem. Used in more advanced and performance-critical robotics projects.
+*   **Teensy:** Small, powerful, and breadboard-friendly development boards with ARM Cortex-M processors. Often used where Arduino lacks processing power or specific features.
+*   **Raspberry Pi Pico:** A low-cost, high-performance microcontroller board built around the Raspberry Pi RP2040 chip. Offers dual ARM Cortex-M0+ cores and programmable I/O (PIO).
+
+## Programming Microcontrollers
+
+Microcontrollers are typically programmed in C/C++, though some platforms (like MicroPython on ESP32/Pico) allow Python.
+
+The development process usually involves:
+1.  **Writing Code:** Developing the firmware (e.g., in Arduino IDE, PlatformIO, or an MCU-specific IDE like STM32CubeIDE).
+2.  **Compiling:** Compiling the code into a machine-readable format.
+3.  **Flashing:** Uploading the compiled code (hex file) to the microcontroller's flash memory.
+4.  **Debugging:** Testing and troubleshooting the embedded system.
+
+## Microcontrollers in Robotics
+
+Microcontrollers are often used as the "brains" for specific subsystems of a robot:
+
+*   **Motor Controllers:** Directly manage motor drivers, handle PID control loops for joint positions/velocities, and read encoder feedback.
+*   **Sensor Hubs:** Collect and preprocess data from multiple low-level sensors (e.g., IMUs, ultrasonic sensors) before sending aggregated data to a higher-level processor (like a Raspberry Pi or a PC).
+*   **Actuator Control:** Manage servo motors, solenoids, or other specialized actuators.
+*   **Real-time Tasks:** Execute tasks that require precise timing, such as managing communication protocols with external devices or generating complex waveform patterns.
+*   **Safety Critical Systems:** Implement emergency stop mechanisms or basic safety protocols independently of the main robot controller.
+
+While powerful single-board computers (like Raspberry Pi) handle high-level tasks like AI, navigation, and complex computations, microcontrollers remain indispensable for the low-level, real-time interactions with the physical world that define robotics.
+
+![Microcontrollers](/img/microcontrollers.svg)

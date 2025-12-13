@@ -1,0 +1,153 @@
+---
+id: computer-vision-for-robotics
+title: OpenCV
+---
+
+# OpenCV (Open Source Computer Vision Library)
+
+OpenCV is an open-source computer vision and machine learning software library. It is widely used for real-time image processing, object detection, facial recognition, and many other computer vision tasks. In robotics, OpenCV is an indispensable tool for enabling robots to "see" and interpret their environment. This chapter will introduce OpenCV, its core functionalities, and common applications in robotics.
+
+## What is Computer Vision?
+
+Computer vision is a field of artificial intelligence that trains computers to interpret and understand the visual world. Using digital images and videos from cameras, computers can accurately identify and classify objects, then react to what they "see." In robotics, this means a robot can perceive its surroundings, recognize objects, track movement, and even understand human gestures.
+
+## Why OpenCV for Robotics?
+
+*   **Extensive Functionality:** OpenCV provides a comprehensive suite of algorithms for image and video analysis, including feature detection, object tracking, image segmentation, 3D reconstruction, and machine learning models.
+*   **Performance:** Optimized C++ backend ensures high performance, crucial for real-time robotic applications.
+*   **Cross-Platform:** Available on Windows, Linux, macOS, Android, and iOS.
+*   **Multiple Language Interfaces:** Primarily C++, but also provides official Python, Java, and MATLAB interfaces. Python's ease of use makes it a popular choice for rapid prototyping in robotics.
+*   **Large Community and Documentation:** A vast user base and extensive documentation make it easy to learn and troubleshoot.
+*   **Open Source:** Free to use under a BSD license.
+
+## Core Concepts in OpenCV
+
+### Image Representation
+
+Images are typically represented as multi-dimensional arrays (NumPy arrays in Python).
+*   **Grayscale Images:** 2D arrays (height x width).
+*   **Color Images:** 3D arrays (height x width x channels), often BGR (Blue, Green, Red) in OpenCV.
+
+```python
+import cv2
+import numpy as np
+
+# Load an image
+img = cv2.imread('image.jpg')
+
+# Check image properties
+print(f"Image shape: {img.shape}") # e.g., (height, width, channels)
+print(f"Image data type: {img.dtype}") # e.g., uint8
+
+# Convert to grayscale
+gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+```
+
+### Basic Image Operations
+
+*   **Reading/Writing Images:** `cv2.imread()`, `cv2.imwrite()`.
+*   **Displaying Images:** `cv2.imshow()`, `cv2.waitKey()`, `cv2.destroyAllWindows()`.
+*   **Resizing, Cropping, Rotating:** Geometric transformations.
+*   **Filtering:** Blurring, sharpening, edge detection (e.g., Canny, Sobel).
+
+```python
+# Resize image
+resized_img = cv2.resize(img, (200, 150))
+
+# Apply Gaussian blur
+blurred_img = cv2.GaussianBlur(img, (5, 5), 0)
+
+# Edge detection
+edges = cv2.Canny(gray_img, 100, 200)
+```
+
+### Feature Detection and Matching
+
+Identifying unique points (keypoints) in an image and describing them to find correspondences between different images.
+*   **Algorithms:** SIFT, SURF, ORB (Oriented FAST and Rotated BRIEF).
+*   **Applications:** Object recognition, image stitching, 3D reconstruction, visual odometry.
+
+### Object Detection
+
+Locating instances of semantic objects within an image.
+*   **Traditional Methods:** Haar Cascades (e.g., for face detection).
+*   **Deep Learning Methods:** Integration with deep learning frameworks allows for using pre-trained models (e.g., YOLO, SSD) for more accurate and robust object detection. OpenCV provides a DNN module to load and run these models.
+
+### Object Tracking
+
+Following the movement of an object over a sequence of frames.
+*   **Algorithms:** KCF, CSRT, GOTURN.
+*   **Applications:** Following a person, robotic manipulation, autonomous driving.
+
+### Image Segmentation
+
+Dividing an image into regions or segments, often corresponding to different objects or parts of objects.
+
+## OpenCV in Robotics Applications
+
+*   **Autonomous Navigation:**
+    *   **Visual Odometry:** Estimating robot motion from camera images.
+    *   **SLAM (Visual SLAM):** Building maps and localizing simultaneously using visual data.
+    *   **Obstacle Detection:** Identifying obstacles using monocular or stereo cameras.
+*   **Robotic Manipulation:**
+    *   **Object Recognition:** Identifying objects for grasping and manipulation.
+    *   **Pose Estimation:** Determining the 3D position and orientation of objects.
+    *   **Visual Servoing:** Using visual feedback to control a robot's end-effector.
+*   **Human-Robot Interaction:**
+    *   **Facial Recognition:** Recognizing human faces.
+    *   **Gesture Recognition:** Interpreting human gestures for control.
+    *   **Eye-Gaze Tracking:** Understanding where a human is looking.
+*   **Quality Control/Inspection:** Automated inspection of manufactured parts.
+
+## Integrating OpenCV with ROS2
+
+OpenCV can be easily integrated with ROS2, especially through its Python (or C++) interfaces.
+*   **`cv_bridge`:** A ROS2 package that converts between OpenCV image types and ROS `sensor_msgs/Image` messages. This is crucial for passing image data between ROS nodes and OpenCV functions.
+*   **ROS2 Image Transport:** Provides a plugin-based architecture to publish and subscribe to compressed or raw image streams efficiently.
+
+```python
+import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import Image
+from cv_bridge import CvBridge
+import cv2
+
+class ImageProcessor(Node):
+    def __init__(self):
+        super().__init__('image_processor')
+        self.subscription = self.create_subscription(
+            Image,
+            '/camera/image_raw',
+            self.listener_callback,
+            10
+        )
+        self.bridge = CvBridge()
+
+    def listener_callback(self, msg):
+        try:
+            cv_image = self.bridge.imgmsg_to_cv2(msg, "bgr8")
+        except Exception as e:
+            self.get_logger().error(f"Error converting image: {e}")
+            return
+
+        # Perform some OpenCV operation, e.g., grayscale
+        gray_image = cv2.cvtColor(cv_image, cv2.COLOR_BGR2GRAY)
+
+        # Display the image (for debugging/visualization)
+        cv2.imshow("Gray Image", gray_image)
+        cv2.waitKey(1) # Refresh window
+
+def main(args=None):
+    rclpy.init(args=args)
+    image_processor = ImageProcessor()
+    rclpy.spin(image_processor)
+    image_processor.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+```
+
+OpenCV provides the "eyes" for many robotic systems, enabling them to perceive and understand their environment. Its versatility and extensive features make it an indispensable library for any robotics developer working with computer vision.
+
+![OpenCV](/img/opencv.svg)

@@ -1,0 +1,67 @@
+---
+id: control-systems
+title: Control Theory Basics
+---
+
+# Control Theory Basics
+
+Control theory is a fundamental interdisciplinary field of engineering and mathematics that deals with the behavior of dynamic systems with inputs, and how to modify the outputs by using feedback. In robotics, control theory is essential for making robots move precisely, interact with their environment, and achieve desired goals. This chapter introduces the basic concepts of control theory relevant to robotics.
+
+## Key Concepts in Control Theory
+
+*   **System:** A collection of components that work together to achieve a certain objective. In robotics, this could be a robot arm, a mobile base, or an entire humanoid.
+*   **Input:** The signals or commands fed into the system (e.g., motor commands).
+*   **Output:** The measured response or behavior of the system (e.g., robot's position, velocity).
+*   **Feedback:** The process of taking the output of a system and feeding it back as an input, often to correct errors or maintain a desired state.
+*   **Controller:** A device or algorithm that generates control signals to manipulate the system's inputs based on the desired output and feedback.
+*   **Reference (Set Point):** The desired value for the system's output.
+*   **Error:** The difference between the reference and the actual output.
+
+## Open-Loop vs. Closed-Loop Control
+
+### Open-Loop Control (Non-Feedback Control)
+
+In an open-loop control system, the control action is independent of the output. The controller sends commands without knowing if the desired outcome was achieved.
+
+**Advantages:** Simple, inexpensive.
+**Disadvantages:** Inaccurate in the presence of disturbances, cannot correct errors.
+
+**Example:** A simple robotic vacuum cleaner that moves in a predefined pattern without sensing its environment or checking if it has cleaned an area.
+
+### Closed-Loop Control (Feedback Control)
+
+In a closed-loop control system, the control action depends on the output. The system measures its output, compares it to the desired input (reference), and calculates an error signal. This error signal is then used to adjust the input to reduce the error.
+
+**Advantages:** Accurate, robust to disturbances, can correct errors.
+**Disadvantages:** More complex, potentially unstable if not designed properly.
+
+**Example:** A robot arm trying to reach a specific position. Sensors provide feedback on its current position, which the controller uses to adjust motor commands until the desired position is reached.
+
+## Common Control Strategies
+
+### Proportional-Integral-Derivative (PID) Controller
+
+The PID controller is the most widely used control algorithm in industrial applications and robotics due to its effectiveness and simplicity. It continuously calculates an error value $e(t)$ as the difference between a desired setpoint $SP$ and a measured process variable $PV$, and applies a correction based on proportional, integral, and derivative terms.
+
+The control output $u(t)$ of a PID controller is given by:
+
+$$u(t) = K_p e(t) + K_i \int e(t) dt + K_d \frac{de(t)}{dt}$$
+
+Where:
+*   $K_p$: Proportional gain. Responds to the current error. A larger $K_p$ means a larger response to the error.
+*   $K_i$: Integral gain. Responds to the accumulated error over time. Helps eliminate steady-state errors.
+*   $K_d$: Derivative gain. Responds to the rate of change of the error. Helps damp oscillations and improve stability.
+
+**Tuning PID Controllers:** The process of adjusting $K_p, K_i, K_d$ to achieve desired system performance (e.g., fast response, minimal overshoot, no steady-state error). Common tuning methods include trial and error, Ziegler-Nichols, and auto-tuning.
+
+### State-Space Control
+
+A more advanced approach that models the system's behavior using a set of first-order differential equations. It provides a more comprehensive view of the system's internal state.
+
+### Trajectory Tracking
+
+In robotics, this involves designing controllers that enable a robot to follow a predefined path or trajectory over time, often used for tasks like pick-and-place or autonomous navigation.
+
+Control theory is a vast subject, and this chapter only scratches the surface. However, understanding these basic principles is crucial for designing and implementing effective robotic systems.
+
+![Control Theory Basics](/img/control-theory.svg)

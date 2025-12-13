@@ -7,20 +7,26 @@
 
 ## Summary
 
-[Extract from feature spec: primary requirement + technical approach from research]
+This plan outlines the technical execution for the "Physical AI & Humanoid Robotics" platform. The primary goal is to create a Docusaurus-based educational website with four core curriculum modules. The technical approach involves a dual-architecture: a Docusaurus frontend for content and a Python/FastAPI backend to handle user authentication and future dynamic features, as required by the specification's security and scalability goals.
 
 ## Technical Context
 
-<!--
-  ACTION REQUIRED: Replace the content in this section with the technical details
-  for the project. The structure here is presented in advisory capacity to guide
-  the iteration process.
--->
+**Language/Version**: 
+- Python 3.10+
+- TypeScript 5.1+
+- C++17
+- MDX
 
-**Language/Version**: Python, TypeScript, C++, MDX (Versions: NEEDS CLARIFICATION)
-**Primary Dependencies**: ROS 2, Gazebo, NVIDIA Isaac Sim, Unity, Docusaurus, React, OpenAI API (GPT-4/Whisper), PyTorch, Algolia DocSearch, KaTeX/MathJax
-**Storage**: GitHub Pages (for static files), NEEDS CLARIFICATION (for any dynamic/user data)
-**Testing**: pytest, Jest (NEEDS CLARIFICATION)
+**Primary Dependencies**: ROS 2, Gazebo, NVIDIA Isaac Sim, Unity, Docusaurus, React, OpenAI API (GPT-4/Whisper), PyTorch, Algolia DocSearch, KaTeX/MathJax, FastAPI
+
+**Storage**: 
+- **Static Content**: GitHub Pages (via Docusaurus deployment)
+- **Dynamic/User Data**: A relational database (e.g., PostgreSQL, SQLite) will be required to support the FastAPI backend for user data. The specific choice is deferred to the database integration task.
+
+**Testing**: 
+- **Frontend (TypeScript/React)**: Jest for unit tests, Playwright for E2E tests.
+- **Backend (Python)**: `pytest` for unit and integration tests.
+
 **Target Platform**: Docusaurus on GitHub Pages, Ubuntu 22.04 LTS (dev), NVIDIA Jetson (edge)
 **Project Type**: Web Application (Documentation Platform)
 **Performance Goals**: Lighthouse score >90

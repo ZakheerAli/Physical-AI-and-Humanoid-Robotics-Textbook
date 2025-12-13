@@ -1,0 +1,112 @@
+---
+id: custom-robot-build-guide
+title: Custom Robot Build Guide
+---
+
+# Custom Robot Build Guide
+
+Building your own robot from scratch is a rewarding experience that combines knowledge from mechanics, electronics, and software engineering. This guide provides a high-level overview of the process involved in designing and building a custom robot, focusing on key considerations and steps.
+
+## Phase 1: Conceptualization and Design
+
+### 1. Define Robot Purpose and Requirements
+
+*   **What will your robot do?** (e.g., move around, pick up objects, monitor an environment, interact with humans).
+*   **What are its operating constraints?** (e.g., indoor/outdoor, speed, payload, battery life, budget).
+*   **Target Environment:** What kind of terrain will it navigate? What obstacles will it encounter?
+
+### 2. Choose Robot Type
+
+*   **Mobile Robot:** Differential drive, omnidirectional, legged (bipedal, quadrupedal).
+*   **Manipulator Arm:** Degrees of freedom, reach, payload capacity.
+*   **Hybrid:** Mobile base with a manipulator arm.
+
+### 3. Mechanical Design
+
+*   **Chassis/Frame:** Design for stability, rigidity, and easy access to components. Consider materials (e.g., aluminum, acrylic, 3D printed parts).
+*   **Locomotion System:**
+    *   **Wheels:** Diameter, type (omni-wheels, Mecanum wheels, tracks).
+    *   **Legs:** Number of legs, leg kinematics.
+*   **Actuators:** Select motors (DC, stepper, servo, BLDC) based on torque, speed, and precision requirements.
+*   **Power Transmission:** Gearboxes, pulleys, direct drive.
+*   **Mounting Points:** Plan for mounting sensors, electronics, and batteries.
+
+### 4. Electrical Design
+
+*   **Power System:**
+    *   **Batteries:** Voltage, capacity (mAh), type (LiPo, Li-ion, NiMH).
+    *   **Voltage Regulators:** To provide stable power to different components (e.g., 12V for motors, 5V for logic, 3.3V for microcontrollers).
+    *   **Power Distribution Board (PDB):** To safely distribute power to all components.
+*   **Motor Drivers:** Select appropriate drivers based on motor type and power requirements.
+*   **Microcontroller/SBC:** Choose a microcontroller (Arduino, ESP32, STM32) for low-level control or a single-board computer (Raspberry Pi, Jetson Nano) for higher-level processing.
+*   **Sensor Integration:** Plan wiring and interfaces for all sensors.
+*   **Wiring Diagram:** Create a detailed diagram of all electrical connections.
+
+### 5. Sensor Selection
+
+*   **Perception:** Cameras (RGB, depth), LiDAR, ultrasonic sensors, IR sensors.
+*   **Localization/Navigation:** IMU, encoders, GPS.
+*   **Interaction:** Force/torque sensors, touch sensors.
+
+## Phase 2: Prototyping and Assembly
+
+### 1. Gather Components and Tools
+
+*   **Hardware:** Motors, drivers, sensors, batteries, microcontroller, wires, connectors, fasteners.
+*   **Materials:** Frame material, mounting brackets, 3D printer filament (if applicable).
+*   **Tools:** Screwdrivers, wrenches, soldering iron, wire strippers, multimeter, 3D printer.
+
+### 2. Mechanical Assembly
+
+*   Assemble the chassis and locomotion system.
+*   Mount motors, gearboxes, and power transmission components.
+*   Install sensors and actuators.
+*   Ensure all moving parts operate smoothly without binding.
+
+### 3. Electrical Wiring
+
+*   Connect all electronic components according to your wiring diagram.
+*   Pay close attention to polarity, voltage levels, and current ratings.
+*   Use proper crimping or soldering techniques for reliable connections.
+*   Manage cables neatly to prevent interference and damage.
+
+### 4. Basic Functionality Testing
+
+*   **Power-up Test:** Carefully apply power and check for shorts or smoke.
+*   **Motor Test:** Individually test each motor with its driver to ensure correct direction and basic speed control.
+*   **Sensor Test:** Verify that each sensor is providing expected readings to the microcontroller.
+
+## Phase 3: Software Development
+
+### 1. Firmware Development (Microcontroller)
+
+*   Write low-level code for motor control (e.g., PID loops for speed/position).
+*   Develop drivers for interfacing with sensors (e.g., reading IMU data, interpreting LiDAR scans).
+*   Implement communication protocols for higher-level control (e.g., UART, I2C, SPI).
+
+### 2. High-Level Software (SBC/ROS2)
+
+*   **Operating System Setup:** Install Linux (e.g., Ubuntu Server) and ROS2.
+*   **Robot Description (URDF/Xacro):** Create an accurate model of your robot.
+*   **Driver Nodes:** Write ROS2 nodes to interface with your microcontroller (e.g., receive sensor data, send motor commands).
+*   **Navigation Stack:** Integrate Nav2 for autonomous navigation (mapping, localization, path planning).
+*   **Perception:** Implement computer vision or point cloud processing nodes for object detection, recognition, or 3D mapping.
+*   **Behavior Control:** Develop high-level decision-making logic using behavior trees or state machines.
+*   **User Interface:** Create a remote control interface or a monitoring dashboard.
+
+### 3. Testing and Debugging
+
+*   **Unit Tests:** Test individual software modules.
+*   **Integration Tests:** Verify communication between different nodes and hardware components.
+*   **Debugging Tools:** Use ROS2 logging, `rqt` tools, `RViz2`, and `foxglove` for visualization and debugging.
+
+## Phase 4: Iteration and Refinement
+
+*   **Calibration:** Calibrate sensors, motors, and kinematic models for accuracy.
+*   **Performance Tuning:** Optimize control loops, algorithms, and code for better performance.
+*   **Field Testing:** Test the robot in its intended operating environment.
+*   **Documentation:** Document your design, code, and assembly process thoroughly.
+
+Building a custom robot is an iterative process. Start simple, get basic functionalities working, and then incrementally add complexity. Each iteration will teach you valuable lessons and bring you closer to your robotic goals.
+
+![Custom Robot Build Guide](/img/custom-robot-build-guide.svg)

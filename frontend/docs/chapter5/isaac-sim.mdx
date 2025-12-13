@@ -1,0 +1,55 @@
+---
+id: isaac-sim
+title: Isaac Sim
+---
+
+# NVIDIA Isaac Sim
+
+NVIDIA Isaac Sim is a powerful, photo-realistic, and physics-based virtual environment for developing, testing, and training AI-based robots. Built on NVIDIA's Omniverse platform, Isaac Sim leverages the power of NVIDIA's RTX technology to provide high-fidelity, physically accurate simulations. It is particularly well-suited for robotics applications that rely on computer vision and deep learning.
+
+## Key Features of Isaac Sim
+
+*   **Photorealistic Rendering:** Isaac Sim uses real-time ray tracing (RTX technology) to produce stunningly realistic visuals, which is crucial for training and testing computer vision models.
+*   **Accurate Physics Simulation:** Powered by NVIDIA PhysX 5, it provides high-performance, accurate physics simulation for rigid and deformable bodies, fluids, and more.
+*   **Domain Randomization:** To improve the robustness of AI models, Isaac Sim allows you to randomize simulation parameters such as lighting, textures, object positions, and physics properties. This helps create models that generalize well to the real world.
+*   **Synthetic Data Generation:** A key feature for modern robotics, Isaac Sim can generate large, labeled datasets for training AI models. This includes data like RGB images, depth images, semantic segmentation, bounding boxes, and more.
+*   **ROS/ROS2 Integration:** Isaac Sim provides seamless integration with ROS and ROS2, allowing you to connect your existing ROS-based robotics applications directly to the simulator.
+*   **Python Scripting:** The entire simulator is controllable through Python scripts, enabling automation, complex scenario generation, and integration into MLOps pipelines.
+*   **Support for Popular Robot Models:** Includes built-in support for many popular robots like Franka Emika Panda, Universal Robots UR10, and Boston Dynamics Spot.
+
+## Isaac Sim vs. Gazebo
+
+| Feature                 | NVIDIA Isaac Sim                                     | Gazebo (Classic & Fortress)                              |
+| ----------------------- | ---------------------------------------------------- | ------------------------------------------------------ |
+| **Primary Focus**       | AI, computer vision, synthetic data generation       | General-purpose robotics simulation                  |
+| **Rendering Quality**   | Photorealistic (ray tracing)                         | Good, but not photorealistic                       |
+| **Physics Engine**      | NVIDIA PhysX 5                                       | Multiple options (ODE, Bullet, DART, Simbody)        |
+| **Hardware Requirement**| NVIDIA GPU required                                  | Can run on CPU, GPU optional                         |
+| **Cost**                | Free to use                                          | Free and open-source                                 |
+| **Extensibility**       | Python scripting, Omniverse extensions               | C++ plugins                                          |
+
+Isaac Sim is an excellent choice when your robotics application heavily relies on vision and machine learning, and you need to generate large amounts of high-quality synthetic data for training. Gazebo is a more general-purpose simulator that is less demanding on hardware and has a longer history in the ROS community.
+
+## ROS2 Integration in Isaac Sim
+
+Isaac Sim's ROS2 integration allows you to:
+*   **Publish/Subscribe:** Connect ROS2 topics to the simulator. For example, you can publish `sensor_msgs/Image` from a simulated camera or subscribe to `geometry_msgs/Twist` to control a robot.
+*   **Services and Actions:** Call services and actions to interact with the simulated world.
+*   **TF (Transformations):** Publish the transformations of all simulated objects.
+*   **Import URDF/SDF:** Import your existing robot models into the simulator.
+
+The `isaac_ros_bridge` provides the connection between the Isaac Sim environment and your ROS2 application.
+
+## Example Workflow
+
+1.  **Install Isaac Sim:** Download and install Isaac Sim via the NVIDIA Omniverse Launcher.
+2.  **Launch Isaac Sim:** Open an Isaac Sim project.
+3.  **Import or Create a Robot:** Load your robot's URDF or create a robot using Isaac Sim's built-in tools.
+4.  **Add ROS2 Components:** In the Isaac Sim stage (the scene graph), add the necessary ROS2 components to your robot model, such as a "ROS2 Camera" or a "ROS2 Drive" component.
+5.  **Configure ROS2 Bridge:** Configure the topics and services you want to bridge.
+6.  **Run Your ROS2 Application:** Your ROS2 nodes can now communicate with the simulated robot and environment as if it were real hardware.
+7.  **Generate Synthetic Data (Optional):** Set up a "Writer" in Isaac Sim to generate and save labeled synthetic data for training your AI models.
+
+NVIDIA Isaac Sim is a cutting-edge tool that is shaping the future of AI in robotics. Its ability to create highly realistic simulations and generate vast amounts of synthetic data is invaluable for developing the next generation of intelligent robots.
+
+![Isaac Sim](/img/isaac-sim.svg)

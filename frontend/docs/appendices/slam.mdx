@@ -1,0 +1,81 @@
+---
+id: slam
+title: SLAM
+---
+
+# ROS2: SLAM (Simultaneous Localization and Mapping)
+
+SLAM, or Simultaneous Localization and Mapping, is a fundamental problem in robotics that involves a robot building a map of an unknown environment while simultaneously localizing itself within that map. It's a chicken-and-egg problem: you need a map to localize, and you need to be localized to build an accurate map. SLAM is crucial for autonomous navigation in unknown or dynamic environments. This chapter will introduce the core concepts of SLAM and common algorithms used in ROS2.
+
+## The SLAM Problem
+
+Imagine a robot dropped into an unknown building. To navigate, it needs a map. To build a map, it needs to know where it is. But it can't know where it is without a map! This is the essence of the SLAM problem. The robot must use its sensors (e.g., LiDAR, cameras, depth sensors) to perceive the environment and simultaneously update its pose estimate and the map.
+
+## Why is SLAM Difficult?
+
+*   **Sensor Noise:** All sensors have noise and inaccuracies, leading to uncertainty in measurements.
+*   **Odometry Drift:** Wheel odometry tends to accumulate errors over time, leading to significant drift.
+*   **Loop Closure Detection:** Recognizing a previously visited location is critical for correcting accumulated errors and ensuring map consistency.
+*   **Computational Complexity:** Building and updating a map, especially in large environments, can be computationally expensive.
+*   **Dynamic Environments:** Dealing with moving objects or changes in the environment adds another layer of complexity.
+
+## Key Components of a SLAM System
+
+1.  **Odometry/Motion Model:** Estimates the robot's pose change based on internal sensors (e.g., wheel encoders, IMU). Prone to drift.
+2.  **Sensor Model/Observation Model:** Relates sensor measurements to the environment (e.g., how a LiDAR scan corresponds to the map).
+3.  **Data Association:** Matching current sensor observations with features in the existing map (or previous observations).
+4.  **State Estimation:** Combining motion and sensor models to estimate the robot's current pose and map features. This is where the "simultaneous" aspect comes in.
+5.  **Loop Closure Detection:** Identifying when the robot has returned to a previously visited location. This is crucial for correcting accumulated errors (drift) and creating a globally consistent map.
+6.  **Map Representation:** How the environment is represented (e.g., 2D occupancy grid, feature-based maps, point clouds, topological maps).
+
+## Common SLAM Algorithms
+
+Many SLAM algorithms exist, each with its strengths and weaknesses. They generally fall into categories based on the mathematical framework used for state estimation.
+
+### Filter-Based SLAM (e.g., Extended Kalman Filter (EKF) SLAM, Particle Filter (FastSLAM))
+
+*   **EKF SLAM:** Uses an Extended Kalman Filter to estimate the robot's pose and the positions of landmarks simultaneously. It works well in small, well-structured environments but can struggle with large numbers of features due to computational cost and linearization errors.
+*   **Particle Filter SLAM (FastSLAM):** Uses a set of particles (hypotheses) to represent the robot's possible trajectories. Each particle carries its own map. This is more robust to nonlinearities but can be computationally intensive with many particles.
+
+### Graph-Based SLAM (e.g., Graph SLAM, pose-graph SLAM)
+
+Graph-based SLAM formulates the problem as a graph where nodes represent robot poses (keyframes) and edges represent spatial constraints between these poses (e.g., odometry measurements, loop closures). The goal is to find the robot poses and map that best satisfy all constraints.
+
+**How it Works:**
+1.  **Build Graph:** As the robot moves, it adds nodes (robot poses) and edges (measurements between poses) to a graph.
+2.  **Loop Closure:** When a previously visited place is recognized, a new edge (loop closure constraint) is added to the graph, connecting the current pose to the past pose.
+3.  **Graph Optimization:** The entire graph is then optimized to minimize the error in all constraints, effectively distributing the error correction across the entire map and trajectory. This is typically done using non-linear least squares solvers.
+
+**Advantages:** Generally more accurate and scalable for large environments, especially with loop closures.
+**Examples:** Cartographer, gmapping (ROS1), Karto, ORB-SLAM.
+
+### Visual SLAM (V-SLAM)
+
+Uses camera images as the primary sensor input.
+
+*   **Feature-Based V-SLAM:** Detects and tracks distinctive features (e.g., SIFT, ORB) in images.
+*   **Direct V-SLAM:** Uses pixel intensities directly without explicitly extracting features.
+*   **Monocular SLAM:** Uses a single camera.
+*   **Stereo SLAM:** Uses a stereo camera pair for depth information.
+*   **RGB-D SLAM:** Uses RGB-D cameras for both color and depth.
+
+## SLAM in ROS2
+
+ROS2 offers several packages for SLAM, often leveraging graph-based optimization due to its robustness and scalability.
+
+*   **Cartographer:** A highly popular 2D and 3D SLAM library from Google, known for its accuracy and efficiency. It uses scan matching and pose graph optimization.
+*   **GMapping (ROS1, with ROS2 wrappers/ports):** A well-established 2D SLAM algorithm using a Rao-Blackwellized Particle Filter.
+*   **Open-SLAM-GMapping:** A direct port of GMapping for ROS2.
+*   **RTAB-Map (Real-Time Appearance-Based Mapping):** A graph-based SLAM approach for 3D environments, supporting various sensors including RGB-D cameras and LiDAR.
+
+## Practical SLAM Workflow
+
+1.  **Sensor Setup:** Ensure your robot's sensors (e.g., LiDAR, camera) are properly configured and publishing data in ROS2.
+2.  **Odometry:** A reliable odometry source (e.g., wheel encoders, visual odometry) is essential.
+3.  **Launch SLAM Node:** Start a SLAM node (e.g., `cartographer_node`, `rtabmap_node`) with the appropriate configuration.
+4.  **Drive the Robot:** Manually or autonomously drive the robot through the unknown environment to build the map.
+5.  **Save the Map:** Once the map is complete, save it (e.g., `ros2 run nav2_map_server map_saver_cli -f my_map`).
+
+SLAM is a complex but crucial technology that empowers robots to explore, understand, and navigate new environments autonomously, making it a cornerstone of modern robotics.
+
+![SLAM](/img/slam.svg)

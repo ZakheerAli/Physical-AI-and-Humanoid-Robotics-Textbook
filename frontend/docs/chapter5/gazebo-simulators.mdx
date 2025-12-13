@@ -1,0 +1,206 @@
+---
+id: gazebo-simulators
+title: Gazebo Classic
+---
+
+# Gazebo Classic
+
+Gazebo is a powerful open-source 3D robotics simulator that allows you to accurately and efficiently simulate robots in complex indoor and outdoor environments. Gazebo Classic (versions up to 11) has been a cornerstone of the ROS ecosystem for years, providing a robust platform for testing, developing, and validating robotic algorithms before deploying them on physical hardware. This chapter will introduce Gazebo Classic, its features, and its integration with ROS2.
+
+## Why Use a Simulator like Gazebo?
+
+*   **Cost-Effective:** Developing and testing on physical robots can be expensive due to hardware costs and potential damage.
+*   **Rapid Prototyping:** Quickly test different robot designs, sensors, and algorithms without hardware constraints.
+*   **Safe Testing:** Test potentially dangerous or destructive scenarios in a safe virtual environment.
+*   **Parallelization:** Run thousands of simulations in parallel on a cluster to test and validate algorithms under a wide range of conditions.
+*   **Realistic Environments:** Simulate complex environments with realistic physics, lighting, and sensor feedback.
+
+## Key Features of Gazebo Classic
+
+*   **Physics Engine:** Gazebo uses various physics engines (like ODE, Bullet, Simbody, DART) to simulate realistic interactions, including gravity, collisions, and friction.
+*   **Sensor Simulation:** Provides a wide range of simulated sensors, such as cameras, LiDAR, IMUs, GPS, and contact sensors. These sensors can be configured to mimic the noise and limitations of their real-world counterparts.
+*   **Robot Models:** Robots are described using SDF (Simulation Description Format) or URDF (Unified Robot Description Format). Gazebo can import these models and simulate their kinematics and dynamics.
+*   **Plugins:** The functionality of Gazebo can be extended through plugins. There are plugins for robot control, sensor data generation, and custom physics behaviors.
+*   **Graphical User Interface (GUI):** A graphical interface allows you to visualize the simulated world, interact with objects, and monitor sensor data.
+*   **ROS Integration:** Seamless integration with ROS allows you to control simulated robots and receive sensor data through standard ROS topics, services, and actions.
+
+## SDF vs. URDF
+
+*   **URDF:** Primarily designed to describe the kinematic and dynamic properties of a single robot. It's great for robot modeling but has limitations in describing the entire simulation environment.
+*   **SDF:** A more comprehensive XML format that can describe everything in a simulation, including robots, lights, environments, and physics. Gazebo internally uses SDF. While URDFs can be used in Gazebo, they are often converted to SDF first.
+
+## Gazebo and ROS2 Integration
+
+The `gazebo_ros_pkgs` package provides the necessary tools to integrate Gazebo with ROS2. This integration allows you to:
+
+*   **Spawn Robots:** Load your URDF/SDF robot models into the Gazebo simulation.
+*   **Control Robots:** Send commands from ROS2 nodes to control the joints of your simulated robot.
+*   **Receive Sensor Data:** Gazebo plugins publish simulated sensor data (e.g., camera images, laser scans) to ROS2 topics.
+*   **Access Simulation State:** Get information about the state of the simulation, such as the pose of different models.
+
+### Example Workflow
+
+1.  **Create a Robot Model:** Define your robot using URDF or Xacro.
+2.  **Create a Gazebo World:** Create a `.world` file (in SDF format) that describes the environment (e.g., ground plane, obstacles, lighting).
+3.  **Write a Launch File:** Create a ROS2 launch file to:
+    *   Start the Gazebo simulator with your world file.
+    *   Spawn your robot model into the Gazebo world.
+    *   Start the `robot_state_publisher` to publish the robot's state.
+    *   Start any other nodes required for your application (e.g., controllers, navigation nodes).
+4.  **Interact with the Robot:** Use ROS2 tools like `teleop_twist_keyboard` to send control commands and `RViz2` to visualize the robot and its sensor data.
+
+```python
+# Example launch file snippet to start Gazebo and spawn a robot
+from launch import LaunchDescription
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch_ros.actions import Node
+from ament_index_python.packages import get_package_share_directory
+import os
+
+def generate_launch_description():
+    pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
+    pkg_my_robot_description = get_package_share_directory('my_robot_description')
+
+    # Start Gazebo server
+    gazebo = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(pkg_gazebo_ros, 'launch', 'gazebo.launch.py')
+        ),
+        launch_arguments={'world': os.path.join(pkg_my_robot_description, 'worlds', 'my_world.world')}.items()
+    )
+
+    # Spawn robot
+    spawn_entity = Node(
+        package='gazebo_ros',
+        executable='spawn_entity.py',
+        arguments=['-topic', 'robot_description', '-entity', 'my_robot'],
+        output='screen'
+    )
+    
+    # Load robot description (URDF)
+    robot_description_path = os.path.join(pkg_my_robot_description, 'urdf', 'my_robot.urdf')
+    robot_state_publisher = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        output='screen',
+        parameters=[{'robot_description': open(robot_description_path).read()}]
+    )
+
+    return LaunchDescription([
+        gazebo,
+        robot_state_publisher,
+        spawn_entity
+    ])
+```
+
+Gazebo Classic remains a vital tool for robotics development, offering a rich and mature simulation environment that helps accelerate the design-test-deploy cycle.
+
+---
+
+# Gazebo Fortress/Ignition
+
+Gazebo, formerly known as Ignition, is the next generation of the Gazebo robotics simulator. It is a complete redesign of Gazebo Classic, with a focus on modularity, performance, and a modern software architecture. This chapter will provide an overview of Gazebo Fortress/Ignition, its key features, and how it differs from Gazebo Classic.
+
+## From Ignition to Gazebo
+
+In 2019, the next-generation Gazebo simulator was released under the name "Ignition". Starting in 2022, the project was rebranded back to "Gazebo" to unify the community and reduce confusion. The new Gazebo uses a new naming scheme for its releases (e.g., Fortress, Garden, Harmonic). In this chapter, we'll refer to it as Gazebo to align with the current naming, but you will often see "Ignition" in older documentation and code.
+
+## Key Features of Gazebo
+
+*   **Modularity:** Gazebo is a collection of independent libraries that can be used together or separately. This allows for more flexibility and less overhead than the monolithic architecture of Gazebo Classic. The main libraries include:
+    *   **Gazebo Physics:** For physics simulation.
+    *   **Gazebo Rendering:** For rendering and visualization.
+    *   **Gazebo Sensors:** For simulating a wide variety of sensors.
+    *   **Gazebo Transport:** For inter-process communication.
+    *   **Gazebo GUI:** For the graphical user interface.
+*   **Performance:** Gazebo is designed to be more performant than its predecessor, with better support for multi-threading and modern hardware.
+*   **Modern C++:** Written in modern C++, making the code more maintainable and easier to contribute to.
+*   **Plugin Architecture:** A more powerful and flexible plugin system allows for deep customization of all aspects of the simulation.
+*   **High-Fidelity Rendering:** The rendering engine is more advanced, offering more realistic visuals.
+*   **Cross-Platform:** Gazebo is designed to run on Linux, macOS, and Windows.
+
+## Gazebo vs. Gazebo Classic
+
+| Feature               | Gazebo (Ignition)                                   | Gazebo Classic                                     |
+| --------------------- | --------------------------------------------------- | -------------------------------------------------- |
+| **Architecture**      | Modular (collection of libraries)                   | Monolithic                                         |
+| **Communication**     | Its own transport library (Gazebo Transport)        | Custom communication library                       |
+| **ROS Integration**   | Through `ros_gz` packages                           | Through `gazebo_ros_pkgs`                          |
+| **World Description** | SDF (Simulation Description Format)                 | SDF (but with some differences from modern SDF)    |
+| **Performance**       | Generally higher, better multi-threading            | Can be a bottleneck in complex simulations         |
+| **Extensibility**     | Highly extensible through a modern plugin system    | Extensible through plugins, but less flexible      |
+
+## ROS2 Integration with Gazebo
+
+The integration between ROS2 and Gazebo is handled by the `ros_gz` packages. These packages provide a bridge between Gazebo's transport layer and ROS2's communication system (DDS).
+
+The main packages in `ros_gz` are:
+*   `ros_gz_bridge`: Provides a network bridge to pass messages between Gazebo and ROS2. You can configure it to bridge specific topics, services, etc.
+*   `ros_gz_sim`: Contains launch files and tools to easily start Gazebo simulations from ROS2.
+*   `ros_gz_image`: Provides tools for converting image formats between Gazebo and ROS2.
+
+### Example Workflow
+
+The workflow for using Gazebo with ROS2 is similar to Gazebo Classic, but the tools and launch files are different.
+
+1.  **Create Robot and World Files:** Use SDF to describe your robot and the simulation world.
+2.  **Create a Launch File:** Your ROS2 launch file will use actions from the `ros_gz_sim` package.
+3.  **Configure the Bridge:** You'll need to specify which topics and services you want to bridge between Gazebo and ROS2. This is often done in a separate YAML configuration file.
+
+```python
+# Example launch file snippet to start Gazebo and spawn a robot
+import os
+from ament_index_python.packages import get_package_share_directory
+from launch import LaunchDescription
+from launch_ros.actions import Node
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+
+def generate_launch_description():
+    pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
+    pkg_my_robot_description = get_package_share_directory('my_robot_description')
+
+    # Start Gazebo
+    gz_sim = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')
+        ),
+        launch_arguments={'gz_args': f"-r {os.path.join(pkg_my_robot_description, 'worlds', 'my_world.sdf')}"}.items()
+    )
+
+    # Spawn robot
+    spawn_entity = Node(
+        package='ros_gz_sim',
+        executable='create',
+        arguments=[
+            '-file', os.path.join(pkg_my_robot_description, 'sdf', 'my_robot.sdf'),
+            '-name', 'my_robot',
+            '-allow_renaming', 'true'
+        ],
+        output='screen'
+    )
+
+    # Bridge Gazebo and ROS2
+    bridge = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        arguments=[
+            '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
+            '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist'
+            # Add more bridges as needed
+        ],
+        output='screen'
+    )
+
+    return LaunchDescription([
+        gz_sim,
+        spawn_entity,
+        bridge
+    ])
+```
+
+Gazebo (Ignition) represents the future of robotics simulation within the ROS ecosystem. Its modern architecture and improved performance make it an excellent choice for new and complex robotics projects.
+
+![Gazebo Fortress/Ignition](/img/gazebo-fortress-ignition.svg)
+![Gazebo Classic](/img/gazebo-classic.svg)

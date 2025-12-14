@@ -10,6 +10,9 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
     
     permissions:
       contents: read
@@ -29,10 +32,10 @@ jobs:
           cache-dependency-path: 'frontend/package-lock.json'
 
       - name: Install dependencies
-        run: npm install --prefix frontend
+        run: npm install
 
       - name: Build Docusaurus website
-        run: npm run build --prefix frontend
+        run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -40,7 +43,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./frontend/build
+          path: ./build
 
       - name: Deploy to GitHub Pages
         id: deployment

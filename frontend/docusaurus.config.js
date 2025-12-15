@@ -51,8 +51,8 @@ const config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          remarkPlugins: [[remarkMath, { strict: false }]],
-          rehypePlugins: [[rehypeKatex, { strict: false }]],
+          remarkPlugins: [remarkMath],
+          rehypePlugins: [rehypeKatex],
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/ZakheerAli/Physical-AI-and-Humanoid-Robotics-Textbook/tree/main/',

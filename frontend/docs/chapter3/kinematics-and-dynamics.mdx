@@ -42,7 +42,7 @@ This method applies Newton's second law and Euler's equation for rotational moti
 
 The Lagrangian approach is an energy-based method. It uses the robot's kinetic and potential energies to derive the equations of motion. The general form of the Euler-Lagrange equation for a robot is:
 
-$$\\frac{d}{dt}\\left(\\frac{\\partial L}{\\partial \\dot{q}_i}\\right) - \\frac{\\partial L}{\\partial q_i} = Q_i$$
+$$\frac{d}{dt}\left(\frac{\partial L}{\partial \\dot{q}_i}\right) - \frac{\partial L}{\partial q_i} = Q_i$$
 
 Where:
 *   $L = K - P$ is the Lagrangian (Kinetic Energy - Potential Energy).
@@ -51,7 +51,7 @@ Where:
 
 The resulting equations of motion typically take the form:
 
-$$M(q)\\\\ddot{q} + C(q, \\\\dot{q})\\\\dot{q} + G(q) = \\\\tau$$
+$$M(q)\ddot{q} + C(q, \dot{q})\dot{q} + G(q) = \tau$$
 
 Where:
 *   $M(q)$ is the mass matrix (or inertia matrix).

@@ -1,12 +1,10 @@
-import { themes as prismThemes } from 'prism-react-renderer';
-import type { Config } from '@docusaurus/types';
-import type * as Preset from '@docusaurus/preset-classic';
-import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
+const { themes: prismThemes } = require('prism-react-renderer');
+const remarkMath = require('remark-math');
+const rehypeKatex = require('rehype-katex');
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
-const config: Config = {
+const config = {
   title: 'Physical AI and Humanoid Robotics',
   tagline: 'A book on Physical AI and Humanoid Robotics',
   favicon: 'img/favicon.ico',
@@ -76,7 +74,7 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
-      } satisfies Preset.Options,
+      },
     ],
   ],
 
@@ -95,7 +93,11 @@ const config: Config = {
           position: 'left',
           label: 'Textbook',
         },
+        {
           href: 'https://github.com/ZakheerAli/Physical-AI-and-Humanoid-Robotics-Textbook',
+          label: 'GitHub',
+          position: 'right',
+        },
       ],
     },
     footer: {
@@ -143,7 +145,7 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
-  } satisfies Preset.ThemeConfig,
+  },
 };
 
-export default config;
+module.exports = config;

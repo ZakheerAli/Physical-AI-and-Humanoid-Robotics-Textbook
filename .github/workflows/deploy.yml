@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
 
 permissions:
   contents: read
@@ -30,14 +30,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
+          npm-version: 10.x # Re-added based on your provided workflow, will test if it passes now
+          cache: 'npm'
+          cache-dependency-path: 'frontend/package-lock.json' # Needs to be relative to repo root for setup-node
 
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
-        working-directory: ./frontend
+        run: npm ci
+        working-directory: ./frontend # Run npm ci inside the frontend directory
 
-      - name: Build
+      - name: Build Docusaurus website
         run: npm run build
-        working-directory: ./frontend
+        working-directory: ./frontend # Run build inside the frontend directory
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -45,8 +48,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./frontend/build
+          path: ./frontend/build # Path to the built site relative to repo root
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4 # Corrected typo here

@@ -1,4 +1,4 @@
-name: Build Docusaurus Website
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -6,9 +6,20 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  build:
-    name: Build
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     
     steps:
@@ -19,6 +30,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
+          cache: 'npm'
+          cache-dependency-path: 'frontend/package-lock.json'
 
       - name: Install dependencies
         run: npm ci
@@ -27,3 +40,15 @@ jobs:
       - name: Build
         run: npm run build
         working-directory: ./frontend
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./frontend/build
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

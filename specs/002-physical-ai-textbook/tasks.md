@@ -100,7 +100,7 @@
 - [ ] T403: Verify that all KaTeX formulas and Mermaid diagrams are displayed correctly. (Old T064)
 - [ ] T404: Configure the GitHub Actions workflow for deployment to GitHub Pages. (Old T065)
 - [ ] T405: Push the code to the main branch to trigger the deployment. (Old T066)
-- [ ] T406: Verify that the site is live and accessible on GitHub Pages. (Old T067)
+- [x] T406: Verify that the site is live and accessible on GitHub Pages. (Old T067)
 
 ## Dependencies
 - Phase 1 must be completed before Phase 2.

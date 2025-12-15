@@ -7,7 +7,7 @@ import rehypeKatex from 'rehype-katex';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Physical AI',
+  title: 'Physical AI and Humanoid Robotics',
   tagline: 'A book on Physical AI and Humanoid Robotics',
   favicon: 'img/favicon.ico',
 
@@ -57,7 +57,7 @@ const config: Config = {
           rehypePlugins: [[rehypeKatex, { strict: false }]],
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/physical-ai-book/my_physical_ai_book/tree/main/',
+          editUrl: 'https://github.com/ZakheerAli/Physical-AI-and-Humanoid-Robotics-Textbook/tree/main/',
         },
         blog: {
           showReadingTime: true,
@@ -67,7 +67,7 @@ const config: Config = {
           },
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/physical-ai-book/my_physical_ai_book/tree/main/',
+          editUrl: 'https://github.com/ZakheerAli/Physical-AI-and-Humanoid-Robotics-Textbook/tree/main/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -95,11 +95,7 @@ const config: Config = {
           position: 'left',
           label: 'Textbook',
         },
-        {
-          href: 'https://github.com/physical-ai-book/my_physical_ai_book',
-          label: 'GitHub',
-          position: 'right',
-        },
+          href: 'https://github.com/ZakheerAli/Physical-AI-and-Humanoid-Robotics-Textbook',
       ],
     },
     footer: {
@@ -127,7 +123,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/physical-ai-book/my_physical_ai_book',
+              href: 'https://github.com/ZakheerAli/Physical-AI-and-Humanoid-Robotics-Textbook',
             },
           ],
         },

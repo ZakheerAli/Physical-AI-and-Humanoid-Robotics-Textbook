@@ -11,18 +11,18 @@ Neural networks are at the core of modern artificial intelligence, driving advan
 
 At its core, a neural network is composed of interconnected units called **neurons** (or perceptrons). A single neuron receives one or more inputs, applies a transformation to them, and produces an output.
 
-Each input (`x_i`) is multiplied by a corresponding **weight** (`w_i`), which represents the strength or importance of that input. These weighted inputs are summed together, and a **bias** (`b`) term is added. This sum is then passed through an **activation function** ($\sigma$), which introduces non-linearity into the model.
+Each input (`x_i`) is multiplied by a corresponding **weight** (`w_i`), which represents the strength or importance of that input. These weighted inputs are summed together, and a **bias** (`b`) term is added. This sum is then passed through an **activation function** (`$\sigma$`), which introduces non-linearity into the model.
 
 The output ($y$) of a single neuron can be expressed as:
 
 
 
-*   **Inputs ($x_i$):** Data features fed into the neuron.
-*   **Weights ($w_i$):** Parameters that the neuron learns. They determine the influence of each input.
-*   **Bias ($b$):** Another learnable parameter that shifts the activation function, allowing the neuron to activate under different input conditions.
-*   **Activation Function ($\sigma$):** A non-linear function applied to the weighted sum of inputs plus bias. Common activation functions include Sigmoid, ReLU (Rectified Linear Unit), and Tanh.
-    *   **Sigmoid:** $\sigma(z) = \frac{1}{1 + e^{-z}}$. Squashes values between 0 and 1.
-    *   **ReLU:** $\sigma(z) = \max(0, z)$. Simple, computationally efficient, and widely used.
+*   **Inputs (`$x_i$`):** Data features fed into the neuron.
+*   **Weights (`$w_i$`):** Parameters that the neuron learns. They determine the influence of each input.
+*   **Bias (`$b$`):** Another learnable parameter that shifts the activation function, allowing the neuron to activate under different input conditions.
+*   **Activation Function (`$\sigma$`):** A non-linear function applied to the weighted sum of inputs plus bias. Common activation functions include Sigmoid, ReLU (Rectified Linear Unit), and Tanh.
+    *   **Sigmoid:** `$\sigma(z) = \frac{1}{1 + e^{-z}}$`. Squashes values between 0 and 1.
+    *   **ReLU:** `$\sigma(z) = \max(0, z)$`. Simple, computationally efficient, and widely used.
 
 ## Architecture of a Neural Network
 

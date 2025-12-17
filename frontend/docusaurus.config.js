@@ -9,14 +9,11 @@ const config = {
   organizationName: 'ZakheerAli',
   projectName: 'Physical-AI-and-Humanoid-Robotics-Textbook',
   onBrokenLinks: 'throw',
+  onBrokenMarkdownLinks: 'warn',
 
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
-  },
-
-  markdown: {
-    onBrokenMarkdownLinks: 'warn',
   },
 
   stylesheets: [

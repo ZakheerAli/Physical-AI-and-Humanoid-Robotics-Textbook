@@ -15,10 +15,9 @@ Kinematics is essentially the geometry of motion. It focuses on the spatial conf
 
 Forward kinematics is the process of calculating the position and orientation of the robot's end-effector (or any other point of interest) given the values of its joint variables (e.g., joint angles for revolute joints, joint displacements for prismatic joints).
 
-Consider a simple 2R (two-revolute-joint) planar robot arm. Given the link lengths $L_1$, $L_2$ and joint angles $	heta_1$, $	heta_2$, the end-effector position $(x, y)$ can be calculated as:
+Consider a simple 2R (two-revolute-joint) planar robot arm. Given the link lengths $L_1$, $L_2$ and joint angles $\theta_1$, $\theta_2$, the end-effector position $(x, y)$ can be calculated as:
 
-
-
+{'$$x = L_1 \\cos(\\theta_1) + L_2 \\cos(\\theta_1 + \\theta_2)$$$$y = L_1 \\sin(\\theta_1) + L_2 \\sin(\\theta_1 + \\theta_2)$$'}
 
 This transformation often involves using **homogeneous transformation matrices** (HTMs) or **Denavit-Hartenberg (DH) parameters** for more complex manipulators. HTMs combine rotation and translation into a single matrix, making it easier to chain transformations along a robot's kinematic chain.
 
@@ -42,7 +41,7 @@ This method applies Newton's second law and Euler's equation for rotational moti
 
 The Lagrangian approach is an energy-based method. It uses the robot's kinetic and potential energies to derive the equations of motion. The general form of the Euler-Lagrange equation for a robot is:
 
-
+{'$$\\frac{d}{dt}\\left(\\frac{\\partial L}{\\partial \\dot{q}_i}\\right) - \\frac{\\partial L}{\\partial q_i} = Q_i$$'}
 
 Where:
 *   $L = K - P$ is the Lagrangian (Kinetic Energy - Potential Energy).
@@ -51,14 +50,7 @@ Where:
 
 The resulting equations of motion typically take the form:
 
-
-
-Where:
-*   $M(q)$ is the mass matrix (or inertia matrix).
-*   $C(q, \dot{q})$ represents Coriolis and centrifugal forces.
-*   $G(q)$ represents gravitational forces.
-*   $\tau$ is the vector of joint torques.
-*   $\ddot{q}$ is the vector of joint accelerations.
+{'$$M(q)\\ddot{q} + C(q, \\dot{q})\\dot{q} + G(q) = \\tau$$'}
 
 Understanding kinematics and dynamics is foundational for designing, simulating, and controlling robotic systems. These principles enable engineers to predict robot behavior, plan complex movements, and ensure stable and efficient operation.
 

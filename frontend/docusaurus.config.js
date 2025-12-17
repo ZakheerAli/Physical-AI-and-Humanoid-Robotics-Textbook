@@ -2,88 +2,47 @@ const { themes: prismThemes } = require('prism-react-renderer');
 const remarkMath = require('remark-math');
 const rehypeKatex = require('rehype-katex');
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 const config = {
   title: 'Physical AI and Humanoid Robotics',
   tagline: 'A book on Physical AI and Humanoid Robotics',
   favicon: 'img/favicon.ico',
-
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
-  future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
-  },
-
-  // Set the production url of your site here
-  url: 'https://physical-ai-book.github.io',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
+  url: 'https://zakheerali.github.io',
   baseUrl: '/Physical-AI-and-Humanoid-Robotics-Textbook/',
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'ZakheerAli', // Usually your GitHub org/user name.
-  projectName: 'Physical-AI-and-Humanoid-Robotics-Textbook', // Usually your repo name.
-
+  organizationName: 'ZakheerAli',
+  projectName: 'Physical-AI-and-Humanoid-Robotics-Textbook',
   onBrokenLinks: 'throw',
-
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
+  onBrokenMarkdownLinks: 'warn',
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
   },
-
   stylesheets: [
     {
       href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
       type: 'text/css',
-      integrity:
-        'sha384-AwFNzM2rZNfmlQJKZQjpfNkbTMVBHNBqHBlxXoPmmjCAHhS0KgNNc/sU/dlQy6/z',
+      integrity: 'sha384-AwFNzM2rZNfmlQJKZQjpfNkbTMVBHNBqHBlxXoPmmjCAHhS0KgNNc/sU/dlQy6/z',
       crossorigin: 'anonymous',
     },
   ],
-
   presets: [
     [
       'classic',
       {
         docs: {
-          sidebarPath: './sidebars.ts',
+          sidebarPath: require.resolve('./sidebars.ts'),
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/ZakheerAli/Physical-AI-and-Humanoid-Robotics-Textbook/tree/main/',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/ZakheerAli/Physical-AI-and-Humanoid-Robotics-Textbook/tree/main/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: false, // Disabling the blog as it's not used
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: require.resolve('./src/css/custom.css'),
         },
       },
     ],
   ],
-
   themeConfig: {
-    // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
-    colorMode: {
-      respectPrefersColorScheme: true,
-    },
     navbar: {
       title: 'Physical AI and Humanoid Robotics',
       items: [
@@ -106,18 +65,9 @@ const config = {
         {
           title: 'Learn',
           items: [
-            {
-              label: 'Introduction',
-              to: '/docs/introduction',
-            },
-            {
-              label: 'Conclusion',
-              to: '/docs/conclusion',
-            },
-            {
-              label: 'Appendices',
-              to: '/docs/appendices',
-            },
+            { label: 'Introduction', to: '/docs/introduction' },
+            { label: 'Conclusion', to: '/docs/conclusion' },
+            { label: 'Appendices', to: '/docs/appendices' },
           ],
         },
         {
@@ -126,15 +76,6 @@ const config = {
             {
               label: 'GitHub',
               href: 'https://github.com/ZakheerAli/Physical-AI-and-Humanoid-Robotics-Textbook',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
             },
           ],
         },

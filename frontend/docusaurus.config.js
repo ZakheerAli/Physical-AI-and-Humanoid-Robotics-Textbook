@@ -1,6 +1,4 @@
 const { themes: prismThemes } = require('prism-react-renderer');
-const remarkMath = require('remark-math');
-const rehypeKatex = require('rehype-katex');
 
 const config = {
   title: 'Physical AI and Humanoid Robotics',
@@ -11,11 +9,16 @@ const config = {
   organizationName: 'ZakheerAli',
   projectName: 'Physical-AI-and-Humanoid-Robotics-Textbook',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
   },
+
+  markdown: {
+    onBrokenMarkdownLinks: 'warn',
+  },
+
   stylesheets: [
     {
       href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
@@ -24,23 +27,25 @@ const config = {
       crossorigin: 'anonymous',
     },
   ],
+
   presets: [
     [
       'classic',
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.ts'),
-          remarkPlugins: [remarkMath],
-          rehypePlugins: [rehypeKatex],
+          remarkPlugins: [require('remark-math')],
+          rehypePlugins: [require('rehype-katex')],
           editUrl: 'https://github.com/ZakheerAli/Physical-AI-and-Humanoid-Robotics-Textbook/tree/main/',
         },
-        blog: false, // Disabling the blog as it's not used
+        blog: false,
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
       },
     ],
   ],
+
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     navbar: {

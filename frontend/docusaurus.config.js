@@ -5,7 +5,7 @@ const config = {
   tagline: 'A book on Physical AI and Humanoid Robotics',
   favicon: 'img/favicon.ico',
   url: 'https://zakheerali.github.io',
-  baseUrl: '/',
+  baseUrl: '/Physical-AI-and-Humanoid-Robotics-Textbook/',
   organizationName: 'ZakheerAli',
   projectName: 'Physical-AI-and-Humanoid-Robotics-Textbook',
   onBrokenLinks: 'throw',

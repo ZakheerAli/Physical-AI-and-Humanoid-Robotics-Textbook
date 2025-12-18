@@ -5,7 +5,7 @@ const config = {
   tagline: 'A book on Physical AI and Humanoid Robotics',
   favicon: 'img/favicon.ico',
   url: 'https://zakheerali.github.io',
-  baseUrl: '/Physical-AI-and-Humanoid-Robotics-Textbook/',
+  baseUrl: '/',
   organizationName: 'ZakheerAli',
   projectName: 'Physical-AI-and-Humanoid-Robotics-Textbook',
   onBrokenLinks: 'throw',
@@ -31,8 +31,8 @@ const config = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.ts'),
-          remarkPlugins: [require('remark-math')],
-          rehypePlugins: [require('rehype-katex')],
+          remarkPlugins: [[require('remark-math').default, {}]],
+          rehypePlugins: [[require('rehype-katex').default, {}]],
           editUrl: 'https://github.com/ZakheerAli/Physical-AI-and-Humanoid-Robotics-Textbook/tree/main/',
         },
         blog: false,

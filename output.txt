@@ -1,0 +1,11 @@
+No, you should **not** select the `frontend` directory as the root directory option on Vercel.
+
+You should select the **main project root** (D:\AIDD Hackathone\my_physical_ai_book\) as the root directory.
+
+Here's why:
+
+1.  **`vercel.json` Location:** I placed the `vercel.json` configuration file in the main project root (D:\AIDD Hackathone\my_physical_ai_book\). Vercel looks for this file in the root directory you specify to understand how to build and deploy your project.
+2.  **Configuration Directives:** The `vercel.json` file contains instructions that specifically tell Vercel to navigate into the `frontend` directory for installation and build commands (`"installCommand": "cd frontend && npm install"`, `"buildCommand": "cd frontend && npm run build"`).
+3.  **Correct Context:** By setting the project root to the main directory, Vercel will first read `vercel.json`, then execute the commands from the correct context, allowing it to find your `frontend` application within that subdirectory.
+
+If you were to select `frontend` as the root directory, Vercel would then expect `vercel.json` (or `package.json` directly) to be inside the `frontend` folder, which is not the current setup.

@@ -123,7 +123,26 @@ const sidebars: SidebarsConfig = {
       ],
     },
     'conclusion', // Conclusion
-    'appendices', // Appendices
+    {
+      type: 'category',
+      label: 'Appendices',
+      link: {
+        type: 'generated-index',
+        title: 'Appendices',
+        description: 'Additional resources and supplementary materials.',
+        slug: '/category/appendices',
+      },
+      items: [
+        'appendices/custom-robot-build-guide',
+        'appendices/depth-cameras',
+        'appendices/git-and-github',
+        'appendices/linux-and-bash',
+        'appendices/microcontrollers',
+        'appendices/motor-drivers',
+        'appendices/python-for-robotics',
+        'appendices/slam',
+      ],
+    },
   ],
 };
 

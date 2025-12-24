@@ -7,12 +7,19 @@ authors = [
 ]
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = [
-    "fastapi (>=0.124.1,<0.125.0)",
-    "uvicorn (>=0.38.0,<0.39.0)",
-    "python-dotenv (>=1.2.1,<2.0.0)",
-    "pydantic-settings (>=2.12.0,<3.0.0)"
-]
+[tool.poetry.dependencies]
+fastapi = ">=0.124.1,<0.125.0"
+uvicorn = ">=0.38.0,<0.39.0"
+"python-dotenv" = ">=1.2.1,<2.0.0"
+pydantic = {version = ">=2.12.0,<3.0.0", extras = ["email"]}
+"pydantic-settings" = ">=2.12.0,<3.0.0"
+"qdrant-client" = ">=1.7.3,<2.0.0"
+psycopg = {version = ">=3.1.18,<4.0.0", extras = ["binary"]}
+"sentence-transformers" = ">=2.2.2,<3.0.0"
+openai = ">=1.3.7,<2.0.0"
+langchain = "^0.3"
+numpy = "^2.1"
+
 
 [tool.poetry]
 packages = [{include = "backend", from = "src"}]
@@ -24,7 +31,9 @@ build-backend = "poetry.core.masonry.api"
 [dependency-groups]
 dev = [
     "black (>=25.12.0,<26.0.0)",
-    "isort (>=7.0.0,<8.0.0)"
+    "isort (>=7.0.0,<8.0.0)",
+    "pytest (>=9.0.2,<10.0.0)",
+    "httpx (>=0.28.1,<0.29.0)"
 ]
 
 [tool.black]

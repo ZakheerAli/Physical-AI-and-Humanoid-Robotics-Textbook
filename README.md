@@ -63,6 +63,52 @@ The website will be available at `http://localhost:3000`.
 
 We welcome contributions from the community! Whether you want to fix a typo, improve an explanation, add a new example, or suggest a new topic, your input is valuable. Please feel free to open an issue or submit a pull request.
 
+## 🤖 Phase 2: Integrated RAG Chatbot
+
+The textbook now features an integrated **Retrieval-Augmented Generation (RAG)** chatbot that helps you interact with the content.
+
+### Key Features
+- **Full-Book Search:** Ask questions about any topic covered in the book.
+- **Context-Aware Selection:** Highlight any text in the book to ask the assistant for specific clarifications or examples.
+- **Explainable AI:** The chatbot provides sources for its answers, pointing you back to the relevant sections of the textbook.
+
+### Tech Stack
+- **Backend:** FastAPI (Python)
+- **Orchestration:** LangChain & OpenAI Agents SDK
+- **LLM:** Google Gemini (Free Tier)
+- **Vector DB:** Qdrant Cloud
+- **Metadata DB:** Neon Serverless PostgreSQL
+- **Embeddings:** Local `sentence-transformers`
+
+### Running the Chatbot Locally
+
+1.  **Configure Environment Variables:**
+    Create a `.env` file in the `backend` directory with your credentials:
+    ```env
+    QDRANT_URL=your_qdrant_url
+    QDRANT_API_KEY=your_qdrant_api_key
+    NEON_DATABASE_URL=your_neon_url
+    OPENAI_API_KEY=your_gemini_api_key
+    ```
+
+2.  **Ingest Content:**
+    ```bash
+    cd backend
+    poetry install
+    poetry run python -m src.backend.ingest
+    ```
+
+3.  **Start the Backend:**
+    ```bash
+    poetry run python -m backend
+    ```
+
+4.  **Run the Frontend:**
+    ```bash
+    cd ../frontend
+    npm start
+    ```
+
 ## 📄 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

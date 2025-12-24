@@ -20,7 +20,6 @@ const config = {
     {
       href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
       type: 'text/css',
-      integrity: 'sha384-AwFNzM2rZNfmlQJKZQjpfNkbTMVBHNBqHBlxXoPmmjCAHhS0KgNNc/sU/dlQy6/z',
       crossorigin: 'anonymous',
     },
   ],

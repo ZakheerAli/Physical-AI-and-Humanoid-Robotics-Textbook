@@ -87,7 +87,7 @@ const Chatbot: React.FC = () => {
       
       // Fix: Use window.location to detect environment instead of process.env to avoid "process is not defined" error
       const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
-      const prodApiUrl = 'https://zakheerali-physical-ai-backend.hf.space'; 
+      const prodApiUrl = 'https://zakheerali-rag-chatbot-backend.hf.space'; 
       const baseUrl = isLocal ? 'http://localhost:8000' : prodApiUrl;
 
       const body = contextText 

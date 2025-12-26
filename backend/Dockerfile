@@ -1,11 +1,11 @@
 # Use the official Python image as a base image
-FROM python:3.13-slim-bookworm
+FROM python:3.11-slim-bookworm
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Install system dependencies (if any required for psycopg or others)
-# RUN apt-get update && apt-get install -y --no-install-recommends gcc libpq-dev && rm -rf /var/lib/apt/lists/*
+# Install system dependencies (required for psycopg and other builds)
+RUN apt-get update && apt-get install -y --no-install-recommends gcc libpq-dev python3-dev && rm -rf /var/lib/apt/lists/*
 
 # Copy pyproject.toml and poetry.lock to the working directory
 COPY pyproject.toml poetry.lock ./
@@ -17,7 +17,7 @@ RUN pip install poetry
 RUN poetry config virtualenvs.create false
 
 # Install project dependencies
-RUN poetry install --no-root --no-dev
+RUN poetry install --no-root --without dev
 
 # Copy the source code
 COPY src ./src
